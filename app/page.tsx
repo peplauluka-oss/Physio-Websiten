@@ -3,31 +3,39 @@ import Photo from "@/components/Photo";
 import Stars from "@/components/Stars";
 import Reveal from "@/components/Reveal";
 import SwipeGallery from "@/components/SwipeGallery";
+import DnaHero from "@/components/DnaHero";
+import { FadeUp, Parallax } from "@/components/Motion";
 import { services, site, testimonials, images, gallery } from "@/lib/site";
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="hero">
+      {/* Cinematic 3D Hero */}
+      <section className="hero3d">
+        <DnaHero />
         <span className="orb orb--rose" />
-        <span className="orb orb--sage" />
-        <div className="container hero__grid">
-          <div>
+        <span className="orb orb--gold" />
+        <div className="container hero3d__inner">
+          <FadeUp className="hero3d__badge">
             <span className="badge">
               <Stars rating={site.rating} count={site.reviewCount} />
             </span>
-            <h1>
-              Sanft behandelt.<br />
-              <span className="accent">Ganz bei sich</span> angekommen.
+          </FadeUp>
+          <FadeUp delay={0.08}>
+            <h1 className="hero3d__title">
+              In Bewegung.<br />
+              <span className="accent">Ganz bei sich.</span>
             </h1>
-            <p className="lead">
-              Willkommen in der Frauen-Praxis von {site.owner} in {site.address.district}.
-              Hier verbinden wir wirksame Physiotherapie mit einer warmen,
-              wohltuenden Wellness-Atmosphäre – damit Sie sich vom ersten Moment an
-              geborgen fühlen.
+          </FadeUp>
+          <FadeUp delay={0.16}>
+            <p className="lead hero3d__lead">
+              Die Frauen-Praxis von {site.owner} in {site.address.district} –
+              wirksame Physiotherapie in einer warmen, wohltuenden Atmosphäre.
+              Spür den Unterschied vom ersten Atemzug an.
             </p>
-            <div className="hero__actions">
+          </FadeUp>
+          <FadeUp delay={0.24}>
+            <div className="hero__actions" style={{ justifyContent: "center" }}>
               <Link href="/kontakt" className="btn btn--primary">
                 Termin vereinbaren
               </Link>
@@ -35,26 +43,18 @@ export default function HomePage() {
                 📞 {site.phone}
               </a>
             </div>
-            <ul className="trust-row">
+          </FadeUp>
+          <FadeUp delay={0.32}>
+            <ul className="trust-row trust-row--center">
               <li>🌸 Reines Frauen-Team</li>
               <li>🤍 Zeit &amp; Zuwendung</li>
               <li>♿ Barrierefrei</li>
             </ul>
-          </div>
-
-          <div className="hero__media">
-            <Photo
-              src={images.hero}
-              alt="Sanfte physiotherapeutische Behandlung in wohltuender Atmosphäre"
-              icon="🌸"
-              ratio="4 / 5"
-            />
-            <span className="hero__chip">Frauen behandeln Frauen 🌷</span>
-            <div className="hero__floating">
-              <strong>{site.reviewCount}+ Frauen</strong>
-              <span>empfehlen uns von Herzen</span>
-            </div>
-          </div>
+          </FadeUp>
+        </div>
+        <div className="scroll-hint" aria-hidden>
+          <span>Scrollen</span>
+          <span className="scroll-hint__line" />
         </div>
       </section>
 
@@ -142,14 +142,14 @@ export default function HomePage() {
       <section className="section">
         <div className="container split split--wide-media">
           <div className="split__media">
-            <Reveal>
+            <Parallax amount={50}>
               <Photo
                 src={images.treatment}
                 alt="Sanfte manuelle Therapie in der Praxis Simone Rammelt"
                 icon="🤲"
                 ratio="5 / 4"
               />
-            </Reveal>
+            </Parallax>
           </div>
           <div className="split__body">
             <Reveal>

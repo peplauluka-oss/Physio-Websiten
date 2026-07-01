@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
+import ScrollProgress from "@/components/ScrollProgress";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -48,6 +50,8 @@ export default function RootLayout({
         </noscript>
       </head>
       <body>
+        <SmoothScroll />
+        <ScrollProgress />
         <Header />
         <main>{children}</main>
         <Footer />

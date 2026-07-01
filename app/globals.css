@@ -716,3 +716,112 @@ img { max-width: 100%; display: block; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .swipe__track { animation: none; }
 }
+
+/* ============================================================
+   3D-Hero, Smooth-Scroll & scroll-getriebene Effekte
+   ============================================================ */
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Fortschrittsbalken oben */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--rose), var(--clay), var(--gold));
+  z-index: 200;
+}
+
+/* Cinematic 3D Hero */
+.hero3d {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 50% 0%, var(--blush) 0%, var(--cream) 55%),
+    var(--cream);
+  padding: 6rem 0 4rem;
+}
+.hero3d .orb--rose { width: 520px; height: 520px; top: -140px; left: -100px; opacity: 0.4; }
+.hero3d .orb--gold { width: 460px; height: 460px; bottom: -160px; right: -120px; opacity: 0.4; animation-delay: -5s; }
+
+.dna-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.dna-canvas canvas { display: block; }
+
+.hero3d__inner {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero3d__inner::before {
+  content: "";
+  position: absolute;
+  inset: -10% -14%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(58% 52% at 50% 44%, rgba(251, 246, 240, 0.82) 0%, rgba(251, 246, 240, 0.45) 46%, transparent 74%);
+}
+.hero3d__title {
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 0.98;
+  margin: 0.4rem 0 1.3rem;
+  text-shadow: 0 2px 30px rgba(251, 246, 240, 0.6);
+}
+.hero3d__lead {
+  max-width: 56ch;
+  margin: 0 auto;
+  text-shadow: 0 1px 16px rgba(251, 246, 240, 0.8);
+}
+.trust-row--center { justify-content: center; }
+
+/* Scroll-Hinweis */
+.scroll-hint {
+  position: absolute;
+  bottom: 1.8rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.scroll-hint__line {
+  width: 1.5px;
+  height: 46px;
+  background: linear-gradient(var(--clay), transparent);
+  animation: scrollPulse 1.9s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes scrollPulse {
+  0% { transform: scaleY(0); opacity: 0; }
+  40% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1) translateY(46px); opacity: 0; }
+}
+
+@media (max-width: 640px) {
+  .hero3d { min-height: 92svh; }
+  .dna-canvas { opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint__line { animation: none; }
+}
