@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Photo from "@/components/Photo";
+import Reveal from "@/components/Reveal";
 import ApplicationForm from "@/components/ApplicationForm";
 import { career, site, team, images, testimonials } from "@/lib/site";
 
@@ -15,11 +16,13 @@ export default function CareerPage() {
     <>
       {/* Hero */}
       <section className="career-hero">
+        <span className="orb orb--rose" />
+        <span className="orb orb--gold" />
         <div className="container career-hero__grid">
           <div>
             <span className="badge badge--light">Wir stellen ein · {career.employment}</span>
             <h1>
-              {career.headline} <span aria-hidden>💛</span>
+              {career.headline} <span aria-hidden>🌷</span>
             </h1>
             <p className="lead">{career.intro}</p>
             <div className="hero__actions">
@@ -38,8 +41,8 @@ export default function CareerPage() {
           <div className="career-hero__media">
             <Photo
               src={images.career}
-              alt="Physiotherapeut:in bei der Arbeit"
-              icon="🤝"
+              alt="Physiotherapeutin bei der Arbeit"
+              icon="🌸"
               ratio="4 / 5"
             />
           </div>
@@ -60,21 +63,25 @@ export default function CareerPage() {
       </section>
 
       {/* Benefits */}
-      <section className="section section--muted">
+      <section className="section section--blush">
         <div className="container">
-          <div className="section__head center">
-            <span className="eyebrow">Warum du zu uns kommen solltest</span>
-            <h2>Das bieten wir dir</h2>
-          </div>
+          <Reveal>
+            <div className="section__head center">
+              <span className="eyebrow">Warum du zu uns kommen solltest</span>
+              <h2>Das bieten wir dir</h2>
+            </div>
+          </Reveal>
           <div className="grid grid--3">
-            {career.benefits.map((b) => (
-              <article className="card" key={b.title}>
-                <div className="card__icon" aria-hidden>
-                  {b.icon}
-                </div>
-                <h3>{b.title}</h3>
-                <p>{b.text}</p>
-              </article>
+            {career.benefits.map((b, i) => (
+              <Reveal key={b.title} delay={(i % 3) * 90}>
+                <article className="card">
+                  <div className="card__icon" aria-hidden>
+                    {b.icon}
+                  </div>
+                  <h3>{b.title}</h3>
+                  <p>{b.text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -115,7 +122,7 @@ export default function CareerPage() {
       </section>
 
       {/* Wishlist */}
-      <section className="section section--teal">
+      <section className="section section--sage">
         <div className="container split">
           <div className="split__body">
             <span className="eyebrow">Passt das zu dir?</span>

@@ -16,12 +16,14 @@ export default function ContactPage() {
   return (
     <>
       <section className="page-header">
+        <span className="orb orb--rose" />
+        <span className="orb orb--sage" />
         <div className="container">
           <span className="eyebrow">Kontakt</span>
-          <h1>Termin vereinbaren</h1>
+          <h1>Wir freuen uns auf Sie</h1>
           <p className="lead" style={{ margin: "0 auto" }}>
             Rufen Sie uns an oder schreiben Sie uns – wir melden uns schnell und
-            finden gemeinsam den passenden Termin für Sie.
+            finden gemeinsam einen Termin, der sich für Sie gut anfühlt.
           </p>
         </div>
       </section>
@@ -92,7 +94,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section section--muted" style={{ paddingTop: 0 }}>
+      <section className="section section--blush" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="map-wrap">
             <iframe

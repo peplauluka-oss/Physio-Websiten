@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Photo from "@/components/Photo";
 import Stars from "@/components/Stars";
+import Reveal from "@/components/Reveal";
 import { team, site, images, testimonials } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -23,26 +24,29 @@ export default function AboutPage() {
   return (
     <>
       <section className="page-header">
+        <span className="orb orb--rose" />
+        <span className="orb orb--sage" />
         <div className="container">
           <span className="eyebrow">Über uns</span>
-          <h1>Menschen, die sich um Sie kümmern</h1>
+          <h1>Frauen, die sich um Sie kümmern</h1>
           <p className="lead" style={{ margin: "0 auto" }}>
-            Ein eingespieltes Team mitten in {site.address.district} – mit viel
-            Erfahrung, guter Laune und dem ehrlichen Wunsch, dass es Ihnen besser
-            geht.
+            Ein eingespieltes Frauen-Team mitten in {site.address.district} – mit viel
+            Erfahrung, guter Laune und dem ehrlichen Wunsch, dass es Ihnen besser geht.
           </p>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section--cream">
         <div className="container split">
           <div className="split__media">
-            <Photo
-              src={images.practice}
-              alt="Behandlungsraum der Praxis Simone Rammelt"
-              icon="🏥"
-              ratio="4 / 3"
-            />
+            <Reveal>
+              <Photo
+                src={images.practice}
+                alt="Behandlungsraum der Praxis Simone Rammelt"
+                icon="🕯️"
+                ratio="4 / 3"
+              />
+            </Reveal>
           </div>
           <div className="split__body">
             <span className="eyebrow">Unsere Philosophie</span>
@@ -64,26 +68,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section section--muted">
+      <section className="section section--blush">
         <div className="container">
-          <div className="section__head center">
-            <span className="eyebrow">Unser Team</span>
-            <h2>Ihre Therapeutinnen &amp; das Praxisteam</h2>
-            <p className="lead">
-              „Alle Kolleginnen sind sehr nett und haben sehr gute Laune, von der ich
-              mich anstecken lasse.&ldquo; – so beschreiben uns unsere Patient:innen.
-            </p>
-          </div>
+          <Reveal>
+            <div className="section__head center">
+              <span className="eyebrow">Unser Team</span>
+              <h2>Ihre Therapeutinnen &amp; das Praxisteam</h2>
+              <p className="lead">
+                „Alle Kolleginnen sind sehr nett und haben sehr gute Laune, von der ich
+                mich anstecken lasse.&ldquo; – so beschreiben uns unsere Patientinnen.
+              </p>
+            </div>
+          </Reveal>
           <div className="grid grid--3">
-            {team.map((member) => (
-              <article className="card team-card" key={member.name}>
-                <div className="avatar" aria-hidden>
-                  {initials(member.name)}
-                </div>
-                <h3>{member.name}</h3>
-                <p className="role">{member.role}</p>
-                <p>{member.bio}</p>
-              </article>
+            {team.map((member, i) => (
+              <Reveal key={member.name} delay={(i % 3) * 90}>
+                <article className="card team-card">
+                  <div className="avatar" aria-hidden>
+                    {initials(member.name)}
+                  </div>
+                  <h3>{member.name}</h3>
+                  <p className="role">{member.role}</p>
+                  <p>{member.bio}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -92,18 +100,20 @@ export default function AboutPage() {
       {/* Single testimonial highlight */}
       <section className="section">
         <div className="container">
-          <figure className="quote-highlight">
-            <div className="quote-card__mark" aria-hidden>&ldquo;</div>
-            <blockquote>{testimonials[2].quote}</blockquote>
-            <figcaption>
-              <strong>{testimonials[2].author}</strong>
-              <span>{testimonials[2].source}</span>
-            </figcaption>
-          </figure>
+          <Reveal>
+            <figure className="quote-highlight">
+              <div className="quote-card__mark" aria-hidden>&ldquo;</div>
+              <blockquote>{testimonials[2].quote}</blockquote>
+              <figcaption>
+                <strong>{testimonials[2].author}</strong>
+                <span>{testimonials[2].source}</span>
+              </figcaption>
+            </figure>
+          </Reveal>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="cta">
             <h2>Lernen Sie uns persönlich kennen</h2>

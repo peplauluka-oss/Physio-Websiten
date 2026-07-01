@@ -197,7 +197,7 @@ export const testimonials: Testimonial[] = [
 // Fällt eine URL aus, zeigt die Photo-Komponente einen dezenten Verlauf.
 export const images = {
   hero:
-    "https://images.unsplash.com/photo-1512757776214-26d36777b513?w=1400&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=80&auto=format&fit=crop",
   treatment:
     "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=1200&q=80&auto=format&fit=crop",
   massage:
@@ -205,15 +205,25 @@ export const images = {
   practice:
     "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80&auto=format&fit=crop",
   team:
-    "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
   career:
-    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1400&q=80&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1400&q=80&auto=format&fit=crop",
 };
+
+// „Swipe"-Galerie – Impressionen aus der Praxis (Platzhalter, leicht ersetzbar).
+export const gallery = [
+  { src: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=800&q=80&auto=format&fit=crop", label: "Wohlfühl-Atmosphäre", icon: "🕯️" },
+  { src: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80&auto=format&fit=crop", label: "Sanfte Massage", icon: "💆" },
+  { src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80&auto=format&fit=crop", label: "Ruhe & Entspannung", icon: "🌿" },
+  { src: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80&auto=format&fit=crop", label: "Warme Behandlung", icon: "🔥" },
+  { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80&auto=format&fit=crop", label: "Helle Räume", icon: "🪷" },
+  { src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80&auto=format&fit=crop", label: "In besten Händen", icon: "🤲" },
+];
 
 // Karriere / Stellenangebot
 export const career = {
   headline: "Werde Teil unseres Teams",
-  role: "Physiotherapeut:in (m/w/d)",
+  role: "Physiotherapeutin (m/w/d)",
   employment: "Voll- oder Teilzeit · unbefristet",
   intro:
     "Wir sind ein herzliches, eingespieltes Team im Herzen von Prenzlauer Berg – und wir haben noch einen Platz frei: für dich. Bei uns zählt der Mensch, nicht der Minutentakt.",

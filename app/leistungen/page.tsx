@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Photo from "@/components/Photo";
+import Reveal from "@/components/Reveal";
 import { services, images, site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,42 +14,48 @@ export default function ServicesPage() {
   return (
     <>
       <section className="page-header">
+        <span className="orb orb--rose" />
+        <span className="orb orb--sage" />
         <div className="container">
           <span className="eyebrow">Unsere Leistungen</span>
-          <h1>Behandlungen &amp; Therapien</h1>
+          <h1>Sanfte Wege zu mehr Wohlbefinden</h1>
           <p className="lead" style={{ margin: "0 auto" }}>
-            Ein breites Spektrum aus Physiotherapie, manuellen Techniken und
-            wohltuenden Anwendungen – individuell auf Sie abgestimmt und nach
-            ärztlicher Verordnung.
+            Ein liebevoll ausgewähltes Spektrum aus Physiotherapie, manuellen
+            Techniken und wohltuenden Anwendungen – individuell auf Sie abgestimmt
+            und nach ärztlicher Verordnung.
           </p>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section--cream">
         <div className="container">
           <div className="grid grid--2">
-            {services.map((s) => (
-              <article className="card" key={s.slug} id={s.slug}>
-                <div className="card__icon" aria-hidden>
-                  {s.icon}
-                </div>
-                <h3>{s.title}</h3>
-                <p>{s.description}</p>
-              </article>
+            {services.map((s, i) => (
+              <Reveal key={s.slug} delay={(i % 2) * 90}>
+                <article className="card" id={s.slug}>
+                  <div className="card__icon" aria-hidden>
+                    {s.icon}
+                  </div>
+                  <h3>{s.title}</h3>
+                  <p>{s.description}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section section--muted">
+      <section className="section section--blush">
         <div className="container split">
           <div className="split__media">
-            <Photo
-              src={images.massage}
-              alt="Wohltuende Massage in der Praxis Rammelt"
-              icon="💆"
-              ratio="4 / 3"
-            />
+            <Reveal>
+              <Photo
+                src={images.massage}
+                alt="Wohltuende Massage in der Praxis Rammelt"
+                icon="💆"
+                ratio="4 / 3"
+              />
+            </Reveal>
           </div>
           <div className="split__body">
             <span className="eyebrow">Gut zu wissen</span>
@@ -66,7 +73,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="section section--teal">
+      <section className="section section--sage">
         <div className="container center">
           <h2>Nicht sicher, welche Behandlung passt?</h2>
           <p className="lead" style={{ margin: "0 auto 1.5rem" }}>

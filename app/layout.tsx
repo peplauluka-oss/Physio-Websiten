@@ -7,21 +7,22 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: {
     default: `${site.name} · ${site.tagline}`,
-    template: `%s · ${site.name}`,
+    template: `%s · ${site.shortName}`,
   },
   description:
-    "PhysioVital – Ihre Physiotherapie-Praxis in Berlin. Manuelle Therapie, Krankengymnastik, Massage, Lymphdrainage und mehr. Jetzt Termin vereinbaren.",
+    "Physiotherapie Simone Rammelt – Ihre Frauen-Praxis in Berlin Prenzlauer Berg. Sanfte, herzliche Behandlung in wohltuender Wellness-Atmosphäre. Jetzt Termin vereinbaren.",
   keywords: [
     "Physiotherapie",
-    "Krankengymnastik",
-    "Manuelle Therapie",
+    "Wellness",
+    "Frauenpraxis",
     "Massage",
+    "Lymphdrainage",
+    "Prenzlauer Berg",
     "Berlin",
-    "Praxis",
   ],
   openGraph: {
     title: `${site.name} · ${site.tagline}`,
-    description: "Ihre Physiotherapie-Praxis in Berlin.",
+    description: "Sanfte, herzliche Physiotherapie in Prenzlauer Berg.",
     type: "website",
     locale: "de_DE",
   },
@@ -34,6 +35,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Nunito+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+        {/* Ohne JavaScript sollen die per Scroll eingeblendeten Inhalte sichtbar sein */}
+        <noscript>
+          <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
+        </noscript>
+      </head>
       <body>
         <Header />
         <main>{children}</main>
