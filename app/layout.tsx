@@ -44,6 +44,13 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Nunito+Sans:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        {/* Theme vor dem ersten Paint setzen (kein Flackern) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('theme');if(t==='cinematic'){document.documentElement.dataset.theme='cinematic';}}catch(e){}",
+          }}
+        />
         {/* Ohne JavaScript sollen die per Scroll eingeblendeten Inhalte sichtbar sein */}
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>

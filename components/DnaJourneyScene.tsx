@@ -5,12 +5,18 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 import DnaModel from "./DnaModel";
+import { useThemeMode } from "./useThemeMode";
 
 const STEPS = 116;
 const GAP = 0.5;
 const TOP = (STEPS / 2) * GAP;
 
-function Traveller() {
+const PALETTES = {
+  warm: { a: "#e6a48f", b: "#e0c07f", rung: "#f4e6d2", l1: "#e6947f", l2: "#d9b783", bg: "#0b0908" },
+  cinematic: { a: "#a855f7", b: "#4f7bff", rung: "#7dd3fc", l1: "#a855f7", l2: "#4f7bff", bg: "#08080f" },
+};
+
+function Traveller({ colorA, colorB, colorRung }: { colorA: string; colorB: string; colorRung: string }) {
   const group = useRef<THREE.Group>(null);
   const scroll = useRef(0);
 
@@ -21,31 +27,32 @@ function Traveller() {
         ? document.documentElement.scrollHeight - window.innerHeight || 1
         : 1;
     const target = typeof window !== "undefined" ? window.scrollY / max : 0;
-    // ruhiges, weiches Nachziehen
     scroll.current += (target - scroll.current) * Math.min(delta * 2.2, 1);
     const p = scroll.current;
-    // Kamera reist ruhig durch die Helix
     group.current.position.y = -TOP + p * (2 * TOP);
     group.current.rotation.y = p * Math.PI * 2 + state.clock.elapsedTime * 0.03;
   });
 
   return (
     <group ref={group}>
-      <DnaModel steps={STEPS} radius={2.0} gap={GAP} angleStep={0.34} tube={0.085} emissive={0.55} />
+      <DnaModel steps={STEPS} radius={2.0} gap={GAP} angleStep={0.34} tube={0.085} colorA={colorA} colorB={colorB} colorRung={colorRung} emissive={0.6} />
     </group>
   );
 }
 
 export default function DnaJourneyScene() {
+  const mode = useThemeMode();
+  const p = PALETTES[mode];
+
   return (
-    <Canvas dpr={[1, 1.8]} camera={{ position: [0, 0, 6], fov: 46 }} gl={{ antialias: true }}>
-      <color attach="background" args={["#0b0908"]} />
-      <fog attach="fog" args={["#0b0908", 6, 15]} />
+    <Canvas key={mode} dpr={[1, 1.8]} camera={{ position: [0, 0, 6], fov: 46 }} gl={{ antialias: true }}>
+      <color attach="background" args={[p.bg]} />
+      <fog attach="fog" args={[p.bg, 6, 15]} />
       <ambientLight intensity={0.3} />
       <directionalLight position={[4, 6, 6]} intensity={0.8} color="#ffe9d0" />
-      <pointLight position={[-4, 0, 4]} intensity={55} color="#e6947f" />
-      <pointLight position={[4, 2, -2]} intensity={40} color="#d9b783" />
-      <Traveller />
+      <pointLight position={[-4, 0, 4]} intensity={55} color={p.l1} />
+      <pointLight position={[4, 2, -2]} intensity={40} color={p.l2} />
+      <Traveller colorA={p.a} colorB={p.b} colorRung={p.rung} />
       <EffectComposer>
         <Bloom intensity={0.9} luminanceThreshold={0.15} luminanceSmoothing={0.9} mipmapBlur radius={0.7} />
       </EffectComposer>
