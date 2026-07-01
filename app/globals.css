@@ -825,3 +825,71 @@ html.lenis, html.lenis body { height: auto; }
 @media (prefers-reduced-motion: reduce) {
   .scroll-hint__line { animation: none; }
 }
+
+/* ============================================================
+   Immersive DNA-Journey-Seite (/erlebnis)
+   ============================================================ */
+.journey {
+  position: relative;
+  background:
+    radial-gradient(100% 60% at 50% 0%, var(--blush) 0%, var(--cream) 50%),
+    var(--cream);
+}
+.journey__canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.journey__canvas canvas { display: block; }
+
+.station {
+  position: relative;
+  z-index: 2;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+}
+.station--left .container { display: flex; justify-content: flex-start; }
+.station--right .container { display: flex; justify-content: flex-end; }
+.station--center .container { display: flex; justify-content: center; text-align: center; }
+
+.station__card {
+  max-width: 440px;
+  background: rgba(251, 246, 240, 0.72);
+  backdrop-filter: blur(14px) saturate(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius);
+  padding: 2.4rem;
+  box-shadow: var(--shadow);
+}
+.station--center .station__card { text-align: center; }
+.station--center .station__card .eyebrow { justify-content: center; }
+.station__card--hero {
+  max-width: 680px;
+  background: rgba(251, 246, 240, 0.6);
+  padding: clamp(2.2rem, 5vw, 3.4rem);
+}
+.station__num {
+  font-family: var(--serif);
+  font-size: 3.4rem;
+  font-weight: 400;
+  color: var(--rose);
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.journey-hero h1 { font-size: clamp(2.6rem, 7vw, 5rem); }
+.journey-final .station__card { padding: clamp(2.2rem, 5vw, 3.4rem); }
+
+.scroll-hint--static {
+  position: static;
+  transform: none;
+  margin: 1.8rem auto 0;
+}
+
+@media (max-width: 720px) {
+  .station__card { max-width: 100%; }
+  .station--left .container,
+  .station--right .container { justify-content: center; }
+}
