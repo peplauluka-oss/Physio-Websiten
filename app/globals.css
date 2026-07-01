@@ -831,9 +831,8 @@ html.lenis, html.lenis body { height: auto; }
    ============================================================ */
 .journey {
   position: relative;
-  background:
-    radial-gradient(100% 60% at 50% 0%, var(--blush) 0%, var(--cream) 50%),
-    var(--cream);
+  background: #0b0908;
+  color: #f6ece1;
 }
 .journey__canvas {
   position: fixed;
@@ -855,32 +854,42 @@ html.lenis, html.lenis body { height: auto; }
 .station--center .container { display: flex; justify-content: center; text-align: center; }
 
 .station__card {
-  max-width: 440px;
-  background: rgba(251, 246, 240, 0.72);
-  backdrop-filter: blur(14px) saturate(1.1);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  max-width: 460px;
+  background: rgba(18, 13, 12, 0.5);
+  backdrop-filter: blur(16px) saturate(1.1);
+  border: 1px solid rgba(240, 226, 208, 0.14);
   border-radius: var(--radius);
-  padding: 2.4rem;
-  box-shadow: var(--shadow);
+  padding: 2.6rem;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
 }
+.station__card h2, .station__card h1 { color: #f8efe4; }
+.station__card p { color: rgba(246, 236, 225, 0.78); margin-bottom: 0; }
+.station__card .eyebrow { color: var(--rose); }
 .station--center .station__card { text-align: center; }
 .station--center .station__card .eyebrow { justify-content: center; }
-.station__card--hero {
-  max-width: 680px;
-  background: rgba(251, 246, 240, 0.6);
-  padding: clamp(2.2rem, 5vw, 3.4rem);
-}
 .station__num {
   font-family: var(--serif);
-  font-size: 3.4rem;
+  font-size: 3.6rem;
   font-weight: 400;
   color: var(--rose);
   line-height: 1;
   display: block;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
-.journey-hero h1 { font-size: clamp(2.6rem, 7vw, 5rem); }
-.journey-final .station__card { padding: clamp(2.2rem, 5vw, 3.4rem); }
+
+/* Minimaler Intro-Block (kein Kasten) */
+.journey-intro { text-align: center; }
+.journey-intro h1 {
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  color: #f8efe4;
+  margin: 0.4rem 0 0;
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+}
+.journey-intro .eyebrow { color: var(--gold); justify-content: center; }
+.journey-final .station__card { padding: clamp(2.4rem, 5vw, 3.4rem); }
+.journey-final .lead { color: rgba(246, 236, 225, 0.8); }
+.journey .scroll-hint { color: rgba(246, 236, 225, 0.6); }
+.journey .scroll-hint__line { background: linear-gradient(var(--gold), transparent); }
 
 .scroll-hint--static {
   position: static;

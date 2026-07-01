@@ -46,19 +46,12 @@ export default function JourneyPage() {
     <div className="journey">
       <DnaJourney />
 
-      {/* Intro */}
+      {/* Intro – bewusst minimal, die Reise erzählt den Rest */}
       <section className="station station--center journey-hero">
         <div className="container">
-          <FadeUp className="station__card station__card--hero">
-            <span className="eyebrow">Deine Reise · Praxis Rammelt</span>
-            <h1>
-              Scrolle durch <span className="accent">deine Genesung</span>
-            </h1>
-            <p className="lead" style={{ margin: "0 auto" }}>
-              Folge dem Verlauf – von den ersten Fragen bis zurück in ein
-              beschwerdefreieres Leben. Jede Windung erzählt einen Teil deiner
-              Behandlung.
-            </p>
+          <FadeUp className="journey-intro">
+            <span className="eyebrow eyebrow--light">Praxis Rammelt</span>
+            <h1>Deine Reise.</h1>
             <div className="scroll-hint scroll-hint--static" aria-hidden>
               <span>Scrollen</span>
               <span className="scroll-hint__line" />
@@ -96,7 +89,7 @@ export default function JourneyPage() {
               <Link href="/kontakt" className="btn btn--primary">
                 Termin vereinbaren
               </Link>
-              <a href={`tel:${site.phoneHref}`} className="btn btn--ghost">
+              <a href={`tel:${site.phoneHref}`} className="btn btn--ghost-light">
                 📞 {site.phone}
               </a>
             </div>
