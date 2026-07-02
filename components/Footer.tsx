@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
+import { site, images } from "@/lib/site";
+import { asset } from "@/lib/asset";
 
 export default function Footer() {
   return (
@@ -42,6 +43,11 @@ export default function Footer() {
           © {new Date().getFullYear()} {site.name} · Behandlung nach ärztlicher
           Verordnung · barrierefreier Zugang ·{" "}
           <Link href="/kontakt">Impressum</Link>
+        </div>
+
+        <div className="footer__logo">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={asset(images.logo)} alt="Praxis für Physiotherapie Simone Rammelt" />
         </div>
       </div>
     </footer>
