@@ -2,10 +2,8 @@
 
 import { Component, ReactNode } from "react";
 import dynamic from "next/dynamic";
-import { useThemeMode } from "./useThemeMode";
 
 const DnaScene = dynamic(() => import("./DnaScene"), { ssr: false, loading: () => null });
-const PetalScene = dynamic(() => import("./PetalScene"), { ssr: false, loading: () => null });
 
 class WebGLBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
@@ -18,16 +16,15 @@ class WebGLBoundary extends Component<{ children: ReactNode }, { failed: boolean
 }
 
 /**
- * Hero-3D je nach Theme: DNA-Helix (Warm/Cinematic) oder
- * schwebende Blüten/Bokeh (Blüte/Cozy). Fällt bei WebGL-Fehlern sauber weg.
+ * Hero-3D: das DNA-Modell ist auf der Landing Page in JEDEM Theme präsent –
+ * in Warm/Cinematic in ihren Tönen, in Blüte/Cozy in warmen, femininen Farben
+ * plus zart schwebende Blütenblätter. Fällt bei WebGL-Fehlern sauber weg.
  */
 export default function DnaHero() {
-  const mode = useThemeMode();
-  const Scene = mode === "blossom" || mode === "cozy" ? PetalScene : DnaScene;
   return (
     <div className="dna-canvas" aria-hidden>
       <WebGLBoundary>
-        <Scene />
+        <DnaScene />
       </WebGLBoundary>
     </div>
   );
