@@ -46,7 +46,7 @@ export default function AboutPage() {
               <Photo
                 src={images.practice}
                 alt="Behandlungsraum der Praxis Simone Rammelt"
-                icon="🕯️"
+                icon="spa"
                 ratio="4 / 3"
               />
             </Reveal>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DnaJourney from "@/components/DnaJourney";
+import Icon from "@/components/Icon";
 import { FadeUp } from "@/components/Motion";
 import { site } from "@/lib/site";
 
@@ -90,7 +91,7 @@ export default function JourneyPage() {
                 Termin vereinbaren
               </Link>
               <a href={`tel:${site.phoneHref}`} className="btn btn--ghost-light">
-                📞 {site.phone}
+                <Icon name="phone" /> {site.phone}
               </a>
             </div>
           </FadeUp>

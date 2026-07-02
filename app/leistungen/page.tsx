@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Photo from "@/components/Photo";
+import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
 import SceneBackground from "@/components/SceneBackground";
 import { services, images, site } from "@/lib/site";
@@ -36,7 +37,7 @@ export default function ServicesPage() {
               <Reveal key={s.slug} delay={(i % 2) * 90}>
                 <article className="card" id={s.slug}>
                   <div className="card__icon" aria-hidden>
-                    {s.icon}
+                    <Icon name={s.icon} />
                   </div>
                   <h3>{s.title}</h3>
                   <p>{s.description}</p>
@@ -54,7 +55,7 @@ export default function ServicesPage() {
               <Photo
                 src={images.massage}
                 alt="Wohltuende Massage in der Praxis Rammelt"
-                icon="💆"
+                icon="spa"
                 ratio="4 / 3"
               />
             </Reveal>
@@ -83,7 +84,7 @@ export default function ServicesPage() {
             Therapie für Sie.
           </p>
           <a href={`tel:${site.phoneHref}`} className="btn btn--primary">
-            📞 {site.phone}
+            <Icon name="phone" /> {site.phone}
           </a>
         </div>
       </section>

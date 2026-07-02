@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Icon from "./Icon";
 import { site, images } from "@/lib/site";
 import { asset } from "@/lib/asset";
 
@@ -10,7 +11,7 @@ export default function Footer() {
           <div>
             <div className="brand" style={{ marginBottom: "1rem" }}>
               <span className="brand__mark" aria-hidden>
-                ✚
+                <Icon name="bloom" />
               </span>
               <span className="brand__text">Praxis Rammelt</span>
             </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Icon from "./Icon";
 
 const links = [
   { href: "/", label: "Start" },
@@ -20,7 +21,7 @@ export default function Header() {
       <div className="container header__inner">
         <Link href="/" className="brand" onClick={() => setOpen(false)}>
           <span className="brand__mark" aria-hidden>
-            ✚
+            <Icon name="bloom" />
           </span>
           <span className="brand__text">
             Praxis <strong>Rammelt</strong>
@@ -33,7 +34,7 @@ export default function Header() {
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? "✕" : "☰"}
+          <Icon name={open ? "close" : "menu"} />
         </button>
 
         <nav className={`nav ${open ? "nav--open" : ""}`}>

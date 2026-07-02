@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Icon from "./Icon";
 import { site } from "@/lib/site";
 
 export default function ApplicationForm() {
@@ -16,7 +17,7 @@ export default function ApplicationForm() {
   if (sent) {
     return (
       <div className="form-success">
-        <h3>Schön, dass du dich meldest! 💛</h3>
+        <h3>Schön, dass du dich meldest! <Icon name="heart" /></h3>
         <p>
           Deine Nachricht ist bei uns eingegangen. Wir melden uns persönlich bei dir
           – ganz unkompliziert. Wir freuen uns darauf, dich kennenzulernen!

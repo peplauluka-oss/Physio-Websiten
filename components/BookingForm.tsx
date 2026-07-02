@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Icon from "./Icon";
 import { services } from "@/lib/site";
 
 export default function BookingForm() {
@@ -16,7 +17,7 @@ export default function BookingForm() {
   if (sent) {
     return (
       <div className="form-success">
-        <h3>Vielen Dank! 🎉</h3>
+        <h3>Vielen Dank! <Icon name="sparkle" /></h3>
         <p>
           Ihre Terminanfrage ist bei uns eingegangen. Wir melden uns
           schnellstmöglich telefonisch oder per E-Mail bei Ihnen.

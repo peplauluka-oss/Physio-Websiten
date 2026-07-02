@@ -357,7 +357,9 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Stars ---------- */
 .stars { display: inline-flex; align-items: center; gap: 0.5rem; }
-.stars__track { position: relative; display: inline-block; font-size: 1rem; letter-spacing: 2px; color: rgba(154, 139, 126, 0.35); line-height: 1; }
+.stars__track { position: relative; display: inline-block; font-size: 1.05rem; color: rgba(154, 139, 126, 0.35); line-height: 0; }
+.stars__row { display: inline-flex; gap: 3px; }
+.stars__row .icon { vertical-align: 0; }
 .stars__fill { position: absolute; top: 0; left: 0; overflow: hidden; white-space: nowrap; color: var(--gold); }
 .stars__meta { font-size: 0.9rem; color: var(--ink-soft); }
 .stars__meta strong { color: var(--mocha); }
@@ -1135,3 +1137,7 @@ html[data-theme="cozy"] .floral-decor svg { opacity: 0.4; }
 
 /* etwas kräftigeres 3D im dunklen Theme (Glow verträgt es) */
 html[data-theme="cinematic"] .subpage-bg { opacity: 0.6; }
+
+/* Vektor-Icons (ersetzen die Emojis) */
+.icon { display: inline-block; vertical-align: -0.15em; flex: none; }
+.card__icon .icon, .info-list .ic .icon, .infobar__item span[aria-hidden] .icon { vertical-align: middle; }

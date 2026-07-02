@@ -40,7 +40,7 @@ export const services: Service[] = [
     short: "Gezielte Handgriffe zur Behandlung von Gelenk-, Muskel- und Nervenbeschwerden.",
     description:
       "Mit spezialisierten Handgrifftechniken lösen wir Blockaden, verbessern die Beweglichkeit Ihrer Gelenke und lindern Schmerzen an Muskeln und Nerven – schonend und nachhaltig.",
-    icon: "🤲",
+    icon: "hands",
   },
   {
     slug: "krankengymnastik",
@@ -48,7 +48,7 @@ export const services: Service[] = [
     short: "Aktive Übungstherapie zur Wiederherstellung Ihrer Bewegungsfreiheit.",
     description:
       "Individuell abgestimmte Übungsprogramme kräftigen Ihre Muskulatur, verbessern Koordination und Haltung und begleiten Sie zurück in einen schmerzfreien Alltag.",
-    icon: "🧘",
+    icon: "activity",
   },
   {
     slug: "marnitz-therapie",
@@ -56,7 +56,7 @@ export const services: Service[] = [
     short: "Tiefenwirksame Schlüsselzonenmassage für gezielte Schmerzlinderung.",
     description:
       "Die Marnitz-Therapie kombiniert sanfte Tiefenmassage mit gezielten Bewegungsübungen. Sie wirkt genau dort, wo Verspannungen und Schmerzen entstehen.",
-    icon: "🎯",
+    icon: "target",
   },
   {
     slug: "manuelle-lymphdrainage",
@@ -64,7 +64,7 @@ export const services: Service[] = [
     short: "Sanfte Entstauungstherapie zur Reduktion von Schwellungen.",
     description:
       "Mit rhythmischen, sanften Grifftechniken regen wir den Lymphfluss an und unterstützen den Abbau von Schwellungen – etwa nach Operationen, Verletzungen oder bei Ödemen.",
-    icon: "🌿",
+    icon: "leaf",
   },
   {
     slug: "klassische-massage",
@@ -72,7 +72,7 @@ export const services: Service[] = [
     short: "Wohltuende Massagetechniken für Muskeln und Bindegewebe.",
     description:
       "Unsere Massagen lösen Verspannungen, fördern die Durchblutung und schenken tiefe Entspannung – ideal als Ergänzung zu Ihrer Therapie oder zum Kräfte tanken.",
-    icon: "💆",
+    icon: "spa",
   },
   {
     slug: "hot-stone-massage",
@@ -80,7 +80,7 @@ export const services: Service[] = [
     short: "Warme Steine für tiefe Entspannung und gelöste Muskeln.",
     description:
       "Erwärmte Basaltsteine geben ihre Wärme sanft an Ihren Körper ab, lockern die Muskulatur und sorgen für ein rundum wohliges Entspannungserlebnis.",
-    icon: "🔥",
+    icon: "flame",
   },
   {
     slug: "dorn-therapie",
@@ -88,7 +88,7 @@ export const services: Service[] = [
     short: "Sanfte Methode zur Korrektur von Wirbel- und Gelenkfehlstellungen.",
     description:
       "Mit schonendem Druck und Bewegung bringen wir Wirbel und Gelenke zurück in ihre natürliche Position – eine sanfte Hilfe bei Rücken- und Haltungsbeschwerden.",
-    icon: "🦴",
+    icon: "spine",
   },
   {
     slug: "bruegger-therapie",
@@ -96,7 +96,7 @@ export const services: Service[] = [
     short: "Haltungs- und Bewegungstherapie gegen Fehlbelastungen.",
     description:
       "Die Brügger-Therapie korrigiert schmerzauslösende Haltungs- und Bewegungsmuster – besonders wirksam bei Beschwerden durch einseitige Belastung im Alltag und Beruf.",
-    icon: "🧍",
+    icon: "person",
   },
   {
     slug: "bobath",
@@ -104,7 +104,7 @@ export const services: Service[] = [
     short: "Neurologische Therapie zur Wiederherstellung von Bewegungsabläufen.",
     description:
       "Das Bobath-Konzept unterstützt Menschen mit neurologischen Erkrankungen dabei, verlorene Bewegungsfähigkeiten wiederzuerlangen und den Alltag selbstständiger zu meistern.",
-    icon: "🧠",
+    icon: "brain",
   },
   {
     slug: "waermetherapie",
@@ -112,7 +112,7 @@ export const services: Service[] = [
     short: "Wohltuende Wärmeanwendungen zur Muskelentspannung.",
     description:
       "Fango, Heißluft und Wärmepackungen fördern die Durchblutung, entspannen die Muskulatur und bereiten Ihren Körper optimal auf die weitere Behandlung vor.",
-    icon: "♨️",
+    icon: "sun",
   },
   {
     slug: "elektrotherapie",
@@ -120,7 +120,7 @@ export const services: Service[] = [
     short: "Kurzwelle und Ultraschall zur gezielten Schmerzbehandlung.",
     description:
       "Kurzwellen- und Ultraschallanwendungen regen die Durchblutung und den Stoffwechsel im Gewebe an, lindern Schmerzen und beschleunigen die Heilung.",
-    icon: "⚡",
+    icon: "bolt",
   },
   {
     slug: "hausbesuche",
@@ -128,7 +128,7 @@ export const services: Service[] = [
     short: "Physiotherapie bei Ihnen zu Hause im näheren Umkreis.",
     description:
       "Wenn der Weg zu uns nicht möglich ist, kommen wir zu Ihnen: Wir behandeln Sie nach ärztlicher Verordnung im näheren Umkreis bequem in Ihrem Zuhause.",
-    icon: "🏡",
+    icon: "home",
   },
 ];
 
@@ -211,7 +211,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Ich kann die Praxis nur wärmstens empfehlen! Das gesamte Team hier ist absolut fantastisch – Bianca, Tina, Dorrit & Frau Rammelt selbst ♥️. Sie sind so kompetent, einfühlsam und engagiert. Sie haben mir geholfen, mich schnell zu erholen und meine Beweglichkeit wiederherzustellen. Auch die Terminplanung ist unkompliziert und flexibel, danke liebe Dana.",
+      "Ich kann die Praxis nur wärmstens empfehlen! Das gesamte Team hier ist absolut fantastisch – Bianca, Tina, Dorrit & Frau Rammelt selbst. Sie sind so kompetent, einfühlsam und engagiert. Sie haben mir geholfen, mich schnell zu erholen und meine Beweglichkeit wiederherzustellen. Auch die Terminplanung ist unkompliziert und flexibel, danke liebe Dana.",
     author: "Patientin nach Reha",
     source: "Google-Rezension",
   },
@@ -231,13 +231,13 @@ export const images = {
 
 // „Swipe"-Galerie – echte Impressionen aus der Praxis.
 export const gallery = [
-  { src: "/images/raum-strand.jpg", label: "Wohlfühl-Atmosphäre", icon: "🌅" },
-  { src: "/images/raum-orchidee.jpg", label: "Behandlungsraum", icon: "🌸" },
-  { src: "/images/raum-blaetter.jpg", label: "Ruhe & Natur", icon: "🌿" },
-  { src: "/images/raum-training.jpg", label: "Bewegung & Training", icon: "🤸" },
-  { src: "/images/praxis-empfang-flur.jpg", label: "Herzlich willkommen", icon: "🚪" },
-  { src: "/images/raum-wolken.jpg", label: "Helle Räume", icon: "☁️" },
-  { src: "/images/praxis-stuhl.jpg", label: "Liebevolle Details", icon: "💛" },
+  { src: "/images/raum-strand.jpg", label: "Wohlfühl-Atmosphäre", icon: "sunrise" },
+  { src: "/images/raum-orchidee.jpg", label: "Behandlungsraum", icon: "flower" },
+  { src: "/images/raum-blaetter.jpg", label: "Ruhe & Natur", icon: "leaf" },
+  { src: "/images/raum-training.jpg", label: "Bewegung & Training", icon: "activity" },
+  { src: "/images/praxis-empfang-flur.jpg", label: "Herzlich willkommen", icon: "door" },
+  { src: "/images/raum-wolken.jpg", label: "Helle Räume", icon: "cloud" },
+  { src: "/images/praxis-stuhl.jpg", label: "Liebevolle Details", icon: "heart" },
 ];
 
 // Karriere / Stellenangebot
@@ -249,32 +249,32 @@ export const career = {
     "Wir sind ein herzliches, eingespieltes Team im Herzen von Prenzlauer Berg – und wir haben noch einen Platz frei: für dich. Bei uns zählt der Mensch, nicht der Minutentakt.",
   benefits: [
     {
-      icon: "💶",
+      icon: "euro",
       title: "Faire, verlässliche Vergütung",
       text: "Überdurchschnittliches Gehalt plus Bonusmöglichkeiten – deine Arbeit ist uns viel wert.",
     },
     {
-      icon: "🗓️",
+      icon: "calendar",
       title: "Arbeitszeiten, die zum Leben passen",
       text: "Flexible Modelle in Voll- oder Teilzeit, keine Wochenenden, planbare Freizeit.",
     },
     {
-      icon: "📚",
+      icon: "book",
       title: "Fort- & Weiterbildung",
       text: "Wir übernehmen deine Fortbildungen und fördern deine Spezialisierung – von MT bis Lymphdrainage.",
     },
     {
-      icon: "💛",
+      icon: "heart",
       title: "Ein Team, das dich trägt",
       text: "Gute Laune, echte Wertschätzung und Kolleginnen, die füreinander da sind – das bestätigen sogar unsere Patient:innen.",
     },
     {
-      icon: "⏱️",
+      icon: "timer",
       title: "Zeit für deine Patient:innen",
       text: "Bei uns behandelst du in Ruhe. Qualität vor Quantität – so, wie du es gelernt hast.",
     },
     {
-      icon: "🌟",
+      icon: "sparkle",
       title: "Moderne, gemütliche Praxis",
       text: "Helle, gut ausgestattete Räume, barrierefrei und zentral gelegen mit bester Anbindung.",
     },

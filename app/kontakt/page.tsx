@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BookingForm from "@/components/BookingForm";
+import Icon from "@/components/Icon";
 import SceneBackground from "@/components/SceneBackground";
 import { site } from "@/lib/site";
 
@@ -37,7 +38,7 @@ export default function ContactPage() {
               <h2>So erreichen Sie uns</h2>
               <ul className="info-list">
                 <li>
-                  <span className="ic">📍</span>
+                  <span className="ic"><Icon name="pin" /></span>
                   <span>
                     <strong>Adresse</strong>
                     <br />
@@ -47,7 +48,7 @@ export default function ContactPage() {
                   </span>
                 </li>
                 <li>
-                  <span className="ic">📞</span>
+                  <span className="ic"><Icon name="phone" /></span>
                   <span>
                     <strong>Telefon</strong>
                     <br />
@@ -55,7 +56,7 @@ export default function ContactPage() {
                   </span>
                 </li>
                 <li>
-                  <span className="ic">📠</span>
+                  <span className="ic"><Icon name="fax" /></span>
                   <span>
                     <strong>Fax</strong>
                     <br />
@@ -63,7 +64,7 @@ export default function ContactPage() {
                   </span>
                 </li>
                 <li>
-                  <span className="ic">✉️</span>
+                  <span className="ic"><Icon name="mail" /></span>
                   <span>
                     <strong>E-Mail</strong>
                     <br />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Photo from "@/components/Photo";
+import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
 import ApplicationForm from "@/components/ApplicationForm";
 import SceneBackground from "@/components/SceneBackground";
@@ -24,7 +25,7 @@ export default function CareerPage() {
           <div>
             <span className="badge badge--light">Wir stellen ein · {career.employment}</span>
             <h1>
-              {career.headline} <span aria-hidden>🌷</span>
+              {career.headline} <span aria-hidden><Icon name="tulip" /></span>
             </h1>
             <p className="lead">{career.intro}</p>
             <div className="hero__actions">
@@ -32,7 +33,7 @@ export default function CareerPage() {
                 Jetzt unverbindlich bewerben
               </a>
               <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--ghost-light">
-                📞 {site.phone}
+                <Icon name="phone" /> {site.phone}
               </a>
             </div>
             <p className="career-hero__note">
@@ -44,7 +45,7 @@ export default function CareerPage() {
             <Photo
               src={images.career}
               alt="Physiotherapeutin bei der Arbeit"
-              icon="🌸"
+              icon="flower"
               ratio="4 / 5"
             />
           </div>
@@ -78,7 +79,7 @@ export default function CareerPage() {
               <Reveal key={b.title} delay={(i % 3) * 90}>
                 <article className="card">
                   <div className="card__icon" aria-hidden>
-                    {b.icon}
+                    <Icon name={b.icon} />
                   </div>
                   <h3>{b.title}</h3>
                   <p>{b.text}</p>
@@ -96,7 +97,7 @@ export default function CareerPage() {
             <Photo
               src={images.team}
               alt="Das Team der Praxis Rammelt"
-              icon="👥"
+              icon="people"
               ratio="4 / 3"
             />
           </div>
@@ -143,11 +144,11 @@ export default function CareerPage() {
             <div className="hero__card">
               <h3>Auf einen Blick</h3>
               <ul className="info-list">
-                <li><span className="ic">📌</span> {career.role}</li>
-                <li><span className="ic">🕒</span> {career.employment}</li>
-                <li><span className="ic">📍</span> {site.address.street}, {site.address.city}</li>
-                <li><span className="ic">🚉</span> Zentral in Prenzlauer Berg, top Anbindung</li>
-                <li><span className="ic">💛</span> Herzliches, eingespieltes Team</li>
+                <li><span className="ic"><Icon name="tag" /></span> {career.role}</li>
+                <li><span className="ic"><Icon name="clock" /></span> {career.employment}</li>
+                <li><span className="ic"><Icon name="pin" /></span> {site.address.street}, {site.address.city}</li>
+                <li><span className="ic"><Icon name="train" /></span> Zentral in Prenzlauer Berg, top Anbindung</li>
+                <li><span className="ic"><Icon name="heart" /></span> Herzliches, eingespieltes Team</li>
               </ul>
             </div>
           </div>

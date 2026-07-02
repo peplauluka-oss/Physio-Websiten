@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { asset } from "@/lib/asset";
+import Icon from "./Icon";
 
 type Props = {
   src: string;
   alt: string;
-  /** Emoji/Icon, das im Verlauf angezeigt wird, solange kein Foto sichtbar ist */
+  /** Icon-Name, der im Verlauf angezeigt wird, solange kein Foto sichtbar ist */
   icon?: string;
   className?: string;
   /** aspect-ratio, z. B. "4 / 3" */
@@ -22,7 +23,7 @@ type Props = {
 export default function Photo({
   src,
   alt,
-  icon = "✚",
+  icon = "flower",
   className = "",
   ratio = "4 / 3",
   rounded = true,
@@ -45,7 +46,7 @@ export default function Photo({
       style={{ aspectRatio: ratio }}
     >
       <span className="photo__icon" aria-hidden data-state={status}>
-        {icon}
+        <Icon name={icon} />
       </span>
       {status !== "fail" && (
         // eslint-disable-next-line @next/next/no-img-element

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Photo from "@/components/Photo";
+import Icon from "@/components/Icon";
 import Stars from "@/components/Stars";
 import Reveal from "@/components/Reveal";
 import SwipeGallery from "@/components/SwipeGallery";
@@ -42,15 +43,15 @@ export default function HomePage() {
                 Termin vereinbaren
               </Link>
               <a href={`tel:${site.phoneHref}`} className="btn btn--ghost">
-                📞 {site.phone}
+                <Icon name="phone" /> {site.phone}
               </a>
             </div>
           </FadeUp>
           <FadeUp delay={0.32}>
             <ul className="trust-row trust-row--center">
-              <li>🌸 Reines Frauen-Team</li>
-              <li>🤍 Zeit &amp; Zuwendung</li>
-              <li>♿ Barrierefrei</li>
+              <li><Icon name="flower" /> Reines Frauen-Team</li>
+              <li><Icon name="heart" /> Zeit &amp; Zuwendung</li>
+              <li><Icon name="accessible" /> Barrierefrei</li>
             </ul>
           </FadeUp>
         </div>
@@ -65,21 +66,21 @@ export default function HomePage() {
         <div className="infobar">
           <div className="infobar__grid">
             <div className="infobar__item">
-              <span aria-hidden>📍</span>
+              <span aria-hidden><Icon name="pin" /></span>
               <div>
                 <strong>{site.address.street}</strong>
                 <span>{site.address.city}</span>
               </div>
             </div>
             <div className="infobar__item">
-              <span aria-hidden>🕒</span>
+              <span aria-hidden><Icon name="clock" /></span>
               <div>
                 <strong>Mo – Do 08 – 19 Uhr</strong>
                 <span>Fr bis 14 Uhr</span>
               </div>
             </div>
             <div className="infobar__item">
-              <span aria-hidden>📞</span>
+              <span aria-hidden><Icon name="phone" /></span>
               <div>
                 <strong>
                   <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
@@ -124,7 +125,7 @@ export default function HomePage() {
               <Reveal key={s.slug} delay={(i % 3) * 90}>
                 <article className="card">
                   <div className="card__icon" aria-hidden>
-                    {s.icon}
+                    <Icon name={s.icon} />
                   </div>
                   <h3>{s.title}</h3>
                   <p>{s.short}</p>
@@ -148,7 +149,7 @@ export default function HomePage() {
               <Photo
                 src={images.treatment}
                 alt="Sanfte manuelle Therapie in der Praxis Simone Rammelt"
-                icon="🤲"
+                icon="hands"
                 ratio="5 / 4"
               />
             </Parallax>
@@ -247,7 +248,7 @@ export default function HomePage() {
           <Reveal>
             <div className="hiring-banner">
               <div className="hiring-banner__body">
-                <span className="eyebrow eyebrow--light">Wir wachsen 🌱</span>
+                <span className="eyebrow eyebrow--light">Wir wachsen <Icon name="sprout" /></span>
                 <h2>Werde Teil unseres Teams</h2>
                 <p>
                   Du bist Physiotherapeutin und suchst einen Ort, an dem Wertschätzung,
@@ -279,7 +280,7 @@ export default function HomePage() {
                   Termin buchen
                 </Link>
                 <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--ghost-light">
-                  📞 {site.phone}
+                  <Icon name="phone" /> {site.phone}
                 </a>
               </div>
             </div>
