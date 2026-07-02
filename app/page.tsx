@@ -167,8 +167,8 @@ export default function HomePage() {
                   und Kraft nachhaltig zurückbringen.
                 </li>
                 <li>
-                  <strong>Ein herzliches Frauen-Team.</strong> Bianca, Tina, Dorrit,
-                  Dana und Simone – mit guter Laune und viel Feingefühl.
+                  <strong>Ein herzliches Frauen-Team.</strong> Acht Kolleginnen rund um
+                  Simone Rammelt – mit guter Laune und viel Feingefühl.
                 </li>
                 <li>
                   <strong>Unkomplizierte Termine.</strong> Flexibel, kurzfristig, auf

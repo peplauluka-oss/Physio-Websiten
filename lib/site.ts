@@ -139,38 +139,54 @@ export type TeamMember = {
   photo?: string;
 };
 
-// Hinweis: Zuordnung Foto <-> Name in Upload-Reihenfolge angenommen.
-// Falls eine Person vertauscht ist, einfach die photo-Pfade tauschen.
 export const team: TeamMember[] = [
   {
     name: "Simone Rammelt",
     role: "Inhaberin & Physiotherapeutin",
-    bio: "Gründerin der Praxis mit langjähriger Erfahrung. Ihr Anspruch: Professionalität, die man spürt, und eine Behandlung, die wirkt.",
+    bio: "Gründerin und Leiterin der Praxis – mit dem Anspruch, dass sich hier jede Patientin rundum gut aufgehoben fühlt.",
     photo: "/images/team-1.jpg",
+  },
+  {
+    name: "Jenny",
+    role: "Physiotherapeutin",
+    bio: "Einfühlsam und mit einem offenen Ohr für Ihr Anliegen – für Behandlungen, die wirklich guttun.",
+    photo: "/images/team-2.jpg",
+  },
+  {
+    name: "Bettina",
+    role: "Physiotherapeutin",
+    bio: "Bringt Ruhe, Erfahrung und echte Zuwendung in jede Behandlung.",
+    photo: "/images/team-3.jpg",
   },
   {
     name: "Bianca",
     role: "Physiotherapeutin",
-    bio: "Einfühlsam, kompetent und mit einem offenen Ohr für jedes Anliegen – für nachhaltige Behandlungserfolge.",
-    photo: "/images/team-2.jpg",
-  },
-  {
-    name: "Tina",
-    role: "Physiotherapeutin",
-    bio: "Engagiert und herzlich. Nimmt sich die Zeit, die es braucht, damit Sie sich rundum gut aufgehoben fühlen.",
-    photo: "/images/team-3.jpg",
-  },
-  {
-    name: "Dorrit",
-    role: "Physiotherapeutin",
-    bio: "Bringt gute Laune und Fachwissen ins Behandlungszimmer – für Genesung, die Freude macht.",
+    bio: "Herzlich und engagiert – nimmt sich genau die Zeit, die Sie brauchen.",
     photo: "/images/team-4.jpg",
+  },
+  {
+    name: "Dorit",
+    role: "Physiotherapeutin",
+    bio: "Mit Feingefühl und Fachwissen für Ihre Beweglichkeit da.",
+    photo: "/images/team-5.jpg",
+  },
+  {
+    name: "Kerstin",
+    role: "Physiotherapeutin",
+    bio: "Aufmerksam und warmherzig – für nachhaltige Behandlungserfolge.",
+    photo: "/images/team-6.jpg",
+  },
+  {
+    name: "Karen",
+    role: "Physiotherapeutin",
+    bio: "Sorgt mit Kompetenz und guter Laune dafür, dass Sie sich wohlfühlen.",
+    photo: "/images/team-7.jpg",
   },
   {
     name: "Dana",
     role: "Empfang & Terminorganisation",
-    bio: "Sorgt für unkomplizierte, flexible Termine und den herzlichen ersten Eindruck, den unsere Patient:innen so schätzen.",
-    photo: "/images/team-5.jpg",
+    bio: "Kümmert sich um unkomplizierte Termine und den herzlichen Empfang – der freundliche erste Eindruck der Praxis.",
+    photo: "/images/team-8.jpg",
   },
 ];
 
