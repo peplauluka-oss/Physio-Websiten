@@ -558,6 +558,8 @@ img { max-width: 100%; display: block; }
   transform: rotate(-5deg);
 }
 .team-card .role { color: var(--clay); font-weight: 700; margin-bottom: 0.5rem; font-size: 0.92rem; letter-spacing: 0.02em; }
+.avatar { overflow: hidden; }
+.avatar__img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
 .team-card p:last-child { color: var(--ink-soft); }
 
 /* ---------- CTA ---------- */

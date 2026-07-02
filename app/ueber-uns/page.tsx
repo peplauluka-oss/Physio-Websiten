@@ -4,6 +4,7 @@ import Photo from "@/components/Photo";
 import Stars from "@/components/Stars";
 import Reveal from "@/components/Reveal";
 import SceneBackground from "@/components/SceneBackground";
+import { asset } from "@/lib/asset";
 import { team, site, images, testimonials } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -86,8 +87,13 @@ export default function AboutPage() {
             {team.map((member, i) => (
               <Reveal key={member.name} delay={(i % 3) * 90}>
                 <article className="card team-card">
-                  <div className="avatar" aria-hidden>
-                    {initials(member.name)}
+                  <div className="avatar" aria-hidden={!member.photo}>
+                    {member.photo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img className="avatar__img" src={asset(member.photo)} alt={member.name} />
+                    ) : (
+                      initials(member.name)
+                    )}
                   </div>
                   <h3>{member.name}</h3>
                   <p className="role">{member.role}</p>

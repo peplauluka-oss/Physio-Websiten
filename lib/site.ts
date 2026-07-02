@@ -136,33 +136,41 @@ export type TeamMember = {
   name: string;
   role: string;
   bio: string;
+  photo?: string;
 };
 
+// Hinweis: Zuordnung Foto <-> Name in Upload-Reihenfolge angenommen.
+// Falls eine Person vertauscht ist, einfach die photo-Pfade tauschen.
 export const team: TeamMember[] = [
   {
     name: "Simone Rammelt",
     role: "Inhaberin & Physiotherapeutin",
     bio: "Gründerin der Praxis mit langjähriger Erfahrung. Ihr Anspruch: Professionalität, die man spürt, und eine Behandlung, die wirkt.",
+    photo: "/images/team-1.jpg",
   },
   {
     name: "Bianca",
     role: "Physiotherapeutin",
     bio: "Einfühlsam, kompetent und mit einem offenen Ohr für jedes Anliegen – für nachhaltige Behandlungserfolge.",
+    photo: "/images/team-2.jpg",
   },
   {
     name: "Tina",
     role: "Physiotherapeutin",
     bio: "Engagiert und herzlich. Nimmt sich die Zeit, die es braucht, damit Sie sich rundum gut aufgehoben fühlen.",
+    photo: "/images/team-3.jpg",
   },
   {
     name: "Dorrit",
     role: "Physiotherapeutin",
     bio: "Bringt gute Laune und Fachwissen ins Behandlungszimmer – für Genesung, die Freude macht.",
+    photo: "/images/team-4.jpg",
   },
   {
     name: "Dana",
     role: "Empfang & Terminorganisation",
     bio: "Sorgt für unkomplizierte, flexible Termine und den herzlichen ersten Eindruck, den unsere Patient:innen so schätzen.",
+    photo: "/images/team-5.jpg",
   },
 ];
 
@@ -193,31 +201,27 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-// Bild-Slots – hier lassen sich die Fotos der Praxis zentral eintragen.
-// Fällt eine URL aus, zeigt die Photo-Komponente einen dezenten Verlauf.
+// Bild-Slots – echte Fotos der Praxis (in public/images/).
+// Fällt ein Bild aus, zeigt die Photo-Komponente einen dezenten Verlauf.
 export const images = {
-  hero:
-    "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=80&auto=format&fit=crop",
-  treatment:
-    "https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=1200&q=80&auto=format&fit=crop",
-  massage:
-    "https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1200&q=80&auto=format&fit=crop",
-  practice:
-    "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80&auto=format&fit=crop",
-  team:
-    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
-  career:
-    "https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1400&q=80&auto=format&fit=crop",
+  hero: "/images/raum-strand.jpg",
+  treatment: "/images/raum-orchidee.jpg",
+  massage: "/images/massage-wellness.jpg",
+  practice: "/images/empfang.jpg",
+  team: "/images/raum-training.jpg",
+  career: "/images/raum-wolken.jpg",
+  logo: "/images/logo.png",
 };
 
-// „Swipe"-Galerie – Impressionen aus der Praxis (Platzhalter, leicht ersetzbar).
+// „Swipe"-Galerie – echte Impressionen aus der Praxis.
 export const gallery = [
-  { src: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=800&q=80&auto=format&fit=crop", label: "Wohlfühl-Atmosphäre", icon: "🕯️" },
-  { src: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80&auto=format&fit=crop", label: "Sanfte Massage", icon: "💆" },
-  { src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80&auto=format&fit=crop", label: "Ruhe & Entspannung", icon: "🌿" },
-  { src: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80&auto=format&fit=crop", label: "Warme Behandlung", icon: "🔥" },
-  { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80&auto=format&fit=crop", label: "Helle Räume", icon: "🪷" },
-  { src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80&auto=format&fit=crop", label: "In besten Händen", icon: "🤲" },
+  { src: "/images/raum-strand.jpg", label: "Wohlfühl-Atmosphäre", icon: "🌅" },
+  { src: "/images/raum-orchidee.jpg", label: "Behandlungsraum", icon: "🌸" },
+  { src: "/images/raum-blaetter.jpg", label: "Ruhe & Natur", icon: "🌿" },
+  { src: "/images/raum-training.jpg", label: "Bewegung & Training", icon: "🤸" },
+  { src: "/images/praxis-empfang-flur.jpg", label: "Herzlich willkommen", icon: "🚪" },
+  { src: "/images/raum-wolken.jpg", label: "Helle Räume", icon: "☁️" },
+  { src: "/images/praxis-stuhl.jpg", label: "Liebevolle Details", icon: "💛" },
 ];
 
 // Karriere / Stellenangebot

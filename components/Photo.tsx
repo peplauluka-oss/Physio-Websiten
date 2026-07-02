@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { asset } from "@/lib/asset";
 
 type Props = {
@@ -28,6 +28,16 @@ export default function Photo({
   rounded = true,
 }: Props) {
   const [status, setStatus] = useState<"loading" | "ok" | "fail">("loading");
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Falls das Bild schon geladen ist, bevor React onLoad anhängt (Cache),
+  // den Zustand direkt korrigieren – sonst bliebe das Foto hinter dem Fallback.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete) {
+      setStatus(img.naturalWidth > 0 ? "ok" : "fail");
+    }
+  }, [src]);
 
   return (
     <div
@@ -40,6 +50,7 @@ export default function Photo({
       {status !== "fail" && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
+          ref={imgRef}
           src={asset(src)}
           alt={alt}
           loading="lazy"
