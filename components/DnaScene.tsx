@@ -42,7 +42,7 @@ function Helix({ colorA, colorB, colorRung, emissive, sparkle }: { colorA: strin
 
 export default function DnaScene() {
   const mode = useThemeMode();
-  const p = PALETTES[mode];
+  const p = PALETTES[mode as "warm" | "cinematic"] ?? PALETTES.warm;
   const dark = mode === "cinematic";
 
   return (

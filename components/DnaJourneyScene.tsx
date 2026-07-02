@@ -11,9 +11,11 @@ const STEPS = 116;
 const GAP = 0.5;
 const TOP = (STEPS / 2) * GAP;
 
-const PALETTES = {
+const PALETTES: Record<string, { a: string; b: string; rung: string; l1: string; l2: string; bg: string }> = {
   warm: { a: "#e6a48f", b: "#e0c07f", rung: "#f4e6d2", l1: "#e6947f", l2: "#d9b783", bg: "#0b0908" },
   cinematic: { a: "#a855f7", b: "#4f7bff", rung: "#7dd3fc", l1: "#a855f7", l2: "#4f7bff", bg: "#08080f" },
+  blossom: { a: "#f48fb1", b: "#c9a7e8", rung: "#ffe1ec", l1: "#f48fb1", l2: "#c9a7e8", bg: "#160b12" },
+  cozy: { a: "#d98c74", b: "#c99a63", rung: "#f3ded0", l1: "#d98c74", l2: "#c99a63", bg: "#130d08" },
 };
 
 function Traveller({ colorA, colorB, colorRung }: { colorA: string; colorB: string; colorRung: string }) {
@@ -42,7 +44,7 @@ function Traveller({ colorA, colorB, colorRung }: { colorA: string; colorB: stri
 
 export default function DnaJourneyScene() {
   const mode = useThemeMode();
-  const p = PALETTES[mode];
+  const p = PALETTES[mode] ?? PALETTES.warm;
 
   return (
     <Canvas key={mode} dpr={[1, 1.8]} camera={{ position: [0, 0, 6], fov: 46 }} gl={{ antialias: true }}>

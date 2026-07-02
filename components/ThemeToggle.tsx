@@ -1,36 +1,40 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { ThemeMode } from "./useThemeMode";
+import { THEMES, type ThemeMode } from "./useThemeMode";
 
 export default function ThemeToggle() {
   const [mode, setMode] = useState<ThemeMode>("warm");
 
   useEffect(() => {
-    setMode(document.documentElement.dataset.theme === "cinematic" ? "cinematic" : "warm");
+    const t = document.documentElement.dataset.theme as ThemeMode | undefined;
+    setMode(t && THEMES.some((x) => x.id === t) ? t : "warm");
   }, []);
 
-  function toggle() {
-    const next: ThemeMode = mode === "cinematic" ? "warm" : "cinematic";
+  function next() {
+    const idx = THEMES.findIndex((t) => t.id === mode);
+    const nextTheme = THEMES[(idx + 1) % THEMES.length].id;
     const el = document.documentElement;
     el.classList.add("theme-anim");
-    el.dataset.theme = next;
+    el.dataset.theme = nextTheme;
     try {
-      localStorage.setItem("theme", next);
+      localStorage.setItem("theme", nextTheme);
     } catch {}
-    setMode(next);
+    setMode(nextTheme);
     window.setTimeout(() => el.classList.remove("theme-anim"), 700);
   }
+
+  const label = THEMES.find((t) => t.id === mode)?.label ?? "Warm";
 
   return (
     <button
       className="theme-toggle"
-      onClick={toggle}
-      aria-label={mode === "cinematic" ? "Zu warmem Design wechseln" : "Zu cinematischem Design wechseln"}
-      title="Design wechseln"
+      onClick={next}
+      aria-label="Design wechseln"
+      title="Design wechseln (4 Varianten)"
     >
       <span className="theme-toggle__dot" />
-      {mode === "cinematic" ? "Cinematic" : "Warm"}
+      {label}
     </button>
   );
 }

@@ -2,32 +2,32 @@
 
 import { Component, ReactNode } from "react";
 import dynamic from "next/dynamic";
+import { useThemeMode } from "./useThemeMode";
 
-const DnaScene = dynamic(() => import("./DnaScene"), {
-  ssr: false,
-  loading: () => null,
-});
+const DnaScene = dynamic(() => import("./DnaScene"), { ssr: false, loading: () => null });
+const PetalScene = dynamic(() => import("./PetalScene"), { ssr: false, loading: () => null });
 
-/**
- * Fängt WebGL-/3D-Fehler ab und zeigt dann nur den warmen Hintergrund-
- * Verlauf – die Seite bleibt so immer intakt.
- */
 class WebGLBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() {
     return { failed: true };
   }
   render() {
-    if (this.state.failed) return null;
-    return this.props.children;
+    return this.state.failed ? null : this.props.children;
   }
 }
 
+/**
+ * Hero-3D je nach Theme: DNA-Helix (Warm/Cinematic) oder
+ * schwebende Blüten/Bokeh (Blüte/Cozy). Fällt bei WebGL-Fehlern sauber weg.
+ */
 export default function DnaHero() {
+  const mode = useThemeMode();
+  const Scene = mode === "blossom" || mode === "cozy" ? PetalScene : DnaScene;
   return (
     <div className="dna-canvas" aria-hidden>
       <WebGLBoundary>
-        <DnaScene />
+        <Scene />
       </WebGLBoundary>
     </div>
   );

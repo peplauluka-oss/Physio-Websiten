@@ -4,6 +4,7 @@ import Stars from "@/components/Stars";
 import Reveal from "@/components/Reveal";
 import SwipeGallery from "@/components/SwipeGallery";
 import DnaHero from "@/components/DnaHero";
+import FloralDecor from "@/components/FloralDecor";
 import { FadeUp, Parallax } from "@/components/Motion";
 import { services, site, testimonials, images, gallery } from "@/lib/site";
 
@@ -13,6 +14,7 @@ export default function HomePage() {
       {/* Cinematic 3D Hero */}
       <section className="hero3d">
         <DnaHero />
+        <FloralDecor />
         <span className="orb orb--rose" />
         <span className="orb orb--gold" />
         <div className="container hero3d__inner">

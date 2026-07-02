@@ -1006,3 +1006,95 @@ html.theme-anim .section, html.theme-anim .cta, html.theme-anim .hiring-banner {
 }
 
 html[data-theme="cinematic"] .journey { background: #08080f; }
+
+/* ============================================================
+   Theme „Blüte" – pastellig · floral · romantisch (sehr feminin)
+   ============================================================ */
+html[data-theme="blossom"] {
+  --cream: #fff5f8;
+  --ivory: #ffffff;
+  --sand: #fdeef4;
+  --sand-deep: #f7dfe9;
+  --blush: #ffe1ec;
+  --blush-deep: #ffc9dd;
+  --rose: #f48fb1;
+  --rose-deep: #ec6a97;
+  --clay: #b98cd9;
+  --clay-deep: #9d6bc7;
+  --sage: #a9d9c0;
+  --sage-soft: #e9f6ef;
+  --mocha: #6b4a5a;
+  --wood: #b98cd9;
+  --gold: #f6b6cf;
+  --ink: #5c4652;
+  --ink-soft: #8a7480;
+  --muted: #b39aa6;
+  --line: #f4d9e4;
+  --shadow-sm: 0 6px 20px rgba(236, 106, 151, 0.1);
+  --shadow: 0 20px 50px rgba(236, 106, 151, 0.16);
+  --shadow-lg: 0 30px 70px rgba(236, 106, 151, 0.2);
+  --shadow-rose: 0 18px 44px rgba(244, 143, 177, 0.4);
+}
+
+/* ============================================================
+   Theme „Cozy" – warm · heimelig · Wohlfühl-Spa (feminin, gemütlich)
+   ============================================================ */
+html[data-theme="cozy"] {
+  --cream: #f7efe4;
+  --ivory: #fffaf2;
+  --sand: #efe1cf;
+  --sand-deep: #e6d3ba;
+  --blush: #f3ded0;
+  --blush-deep: #ecc9b4;
+  --rose: #d98c74;
+  --rose-deep: #c5735a;
+  --clay: #c99a63;
+  --clay-deep: #b3823f;
+  --sage: #a8b58f;
+  --sage-soft: #eaece0;
+  --mocha: #5a4636;
+  --wood: #8a6a4f;
+  --gold: #d9a441;
+  --ink: #4d3c30;
+  --ink-soft: #7a6656;
+  --muted: #a08d78;
+  --line: #e8d7c2;
+  --shadow-sm: 0 6px 20px rgba(120, 84, 56, 0.1);
+  --shadow: 0 20px 50px rgba(120, 84, 56, 0.16);
+  --shadow-lg: 0 30px 70px rgba(120, 84, 56, 0.2);
+  --shadow-rose: 0 18px 44px rgba(217, 140, 116, 0.38);
+}
+
+/* ---- Feminine Extras (Blüte & Cozy) ---- */
+html[data-theme="blossom"] .accent,
+html[data-theme="cozy"] .accent {
+  font-family: "Caveat", "Segoe Script", cursive;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.28em;
+  line-height: 0.9;
+}
+html[data-theme="blossom"] .eyebrow::after,
+html[data-theme="cozy"] .eyebrow::after { content: " ❀"; letter-spacing: 0; }
+
+/* verspieltere, weichere Rundungen */
+html[data-theme="blossom"] { --radius: 30px; --radius-lg: 46px; }
+html[data-theme="blossom"] .card { border-radius: 28px; }
+html[data-theme="blossom"] .card__icon { border-radius: 50%; }
+html[data-theme="cozy"] .card__icon { border-radius: 42% 58% 55% 45%; }
+
+/* Florale Deko – nur in femininen Themes sichtbar */
+.floral-decor { display: none; }
+html[data-theme="blossom"] .floral-decor,
+html[data-theme="cozy"] .floral-decor {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.floral-decor svg { position: absolute; opacity: 0.55; }
+.floral-decor .fl-1 { top: 8%; left: 3%; width: 120px; transform: rotate(-12deg); }
+.floral-decor .fl-2 { bottom: 10%; right: 4%; width: 150px; transform: rotate(8deg); }
+.floral-decor .fl-3 { top: 20%; right: 8%; width: 70px; opacity: 0.4; }
+html[data-theme="cozy"] .floral-decor svg { opacity: 0.4; }

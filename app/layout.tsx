@@ -41,14 +41,14 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Nunito+Sans:wght@400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Nunito+Sans:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap"
           rel="stylesheet"
         />
         {/* Theme vor dem ersten Paint setzen (kein Flackern) */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{var t=localStorage.getItem('theme');if(t==='cinematic'){document.documentElement.dataset.theme='cinematic';}}catch(e){}",
+              "try{var t=localStorage.getItem('theme');if(t&&t!=='warm'&&['cinematic','blossom','cozy'].indexOf(t)>-1){document.documentElement.dataset.theme=t;}}catch(e){}",
           }}
         />
         {/* Ohne JavaScript sollen die per Scroll eingeblendeten Inhalte sichtbar sein */}
