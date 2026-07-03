@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site, whatsappLink } from "@/lib/site";
+import Icon from "@/components/Icon";
 
 /** Wiederkehrender Abschluss-CTA mit Angebots-, Telefon- und WhatsApp-Aktion. */
 export default function CtaBanner({
@@ -18,7 +19,7 @@ export default function CtaBanner({
           <p className="lead" style={{ margin: "0 auto 1.8rem" }}>{text}</p>
           <div style={{ display: "flex", gap: "0.8rem", justifyContent: "center", flexWrap: "wrap" }}>
             <Link href="/kontakt" className="btn btn--primary btn--lg">Kostenloses Angebot</Link>
-            <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg">☎ {site.phone}</a>
+            <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg"><Icon name="phone" size={18} /> {site.phone}</a>
             <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn btn--whatsapp btn--lg">WhatsApp</a>
           </div>
         </div>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { site } from "@/lib/site";
+import Icon from "@/components/Icon";
 
 const links = [
   { href: "/", label: "Start" },
@@ -41,7 +42,7 @@ export default function Header() {
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? "✕" : "☰"}
+          <Icon name={open ? "close" : "menu"} size={22} />
         </button>
 
         <nav className={`nav ${open ? "nav--open" : ""}`} aria-label="Hauptnavigation">
@@ -53,7 +54,7 @@ export default function Header() {
             ))}
           </div>
           <a href={`tel:${site.phoneHref}`} className="nav__phone">
-            <span aria-hidden>☎</span> {site.phone}
+            <Icon name="phone" size={16} /> {site.phone}
           </a>
           <Link href="/kontakt" className="btn btn--primary" onClick={() => setOpen(false)}>
             Angebot in 24 h

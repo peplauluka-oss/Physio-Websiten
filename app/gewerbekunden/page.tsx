@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FaqAccordion from "@/components/FaqAccordion";
 import CtaBanner from "@/components/CtaBanner";
 import JsonLd, { faqPage } from "@/components/JsonLd";
+import Icon, { type IconName } from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: { absolute: "Gewerbekunden – Maler für Büro & Gewerbe in Berlin | Heußer" },
@@ -15,10 +16,10 @@ export const metadata: Metadata = {
 };
 
 const audiences = [
-  { icon: "🏢", title: "Büros & Coworking", text: "Frische, repräsentative Arbeitswelten – abschnittsweise renoviert, ohne dass die Arbeit stoppt." },
-  { icon: "🩺", title: "Praxen & Kanzleien", text: "Hygienische, strapazierfähige Oberflächen und ein Ambiente, das Vertrauen schafft." },
-  { icon: "🛍️", title: "Läden & Gastronomie", text: "Robuste Beschichtungen und Markenfarben für stark frequentierte Flächen – schnell umgesetzt." },
-  { icon: "🏗️", title: "Hausverwaltungen & Bauträger", text: "Verlässlicher Partner für Treppenhäuser, Leerwohnungen und Objekte – planbar und dokumentiert." },
+  { icon: "office", title: "Büros & Coworking", text: "Frische, repräsentative Arbeitswelten – abschnittsweise renoviert, ohne dass die Arbeit stoppt." },
+  { icon: "shield", title: "Praxen & Kanzleien", text: "Hygienische, strapazierfähige Oberflächen und ein Ambiente, das Vertrauen schafft." },
+  { icon: "sparkles", title: "Läden & Gastronomie", text: "Robuste Beschichtungen und Markenfarben für stark frequentierte Flächen – schnell umgesetzt." },
+  { icon: "clipboard", title: "Hausverwaltungen & Bauträger", text: "Verlässlicher Partner für Treppenhäuser, Leerwohnungen und Objekte – planbar und dokumentiert." },
 ];
 
 const b2bFaq = [
@@ -46,7 +47,7 @@ export default function Gewerbekunden() {
           <Reveal delay={220}>
             <div className="hero__cta" style={{ marginTop: "1.6rem" }}>
               <Link href="/kontakt" className="btn btn--primary btn--lg">Gewerbe-Angebot anfordern</Link>
-              <a href={whatsappLink("Anfrage Gewerbe: ")} target="_blank" rel="noopener noreferrer" className="btn btn--whatsapp btn--lg">WhatsApp</a>
+              <a href={whatsappLink("Anfrage Gewerbe: ")} target="_blank" rel="noopener noreferrer" className="btn btn--whatsapp btn--lg"><Icon name="whatsapp" size={18} /> WhatsApp</a>
             </div>
           </Reveal>
         </div>
@@ -62,7 +63,7 @@ export default function Gewerbekunden() {
             {audiences.map((a, i) => (
               <Reveal key={a.title} delay={i * 60}>
                 <div className="card">
-                  <div className="card__icon" aria-hidden>{a.icon}</div>
+                  <div className="card__icon" aria-hidden><Icon name={a.icon as IconName} size={26} /></div>
                   <h3>{a.title}</h3>
                   <p>{a.text}</p>
                 </div>

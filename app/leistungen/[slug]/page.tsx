@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services, getService, districts, site } from "@/lib/site";
 import Photo from "@/components/Photo";
+import Icon, { serviceIconName } from "@/components/Icon";
 import Reveal from "@/components/Reveal";
 import FaqAccordion from "@/components/FaqAccordion";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -57,14 +58,14 @@ export default function ServiceDetail({ params }: { params: { slug: string } }) 
               <Reveal delay={240}>
                 <div className="hero__cta" style={{ marginTop: "1.6rem" }}>
                   <Link href="/kontakt" className="btn btn--primary btn--lg">Kostenloses Angebot</Link>
-                  <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg">☎ {site.phone}</a>
+                  <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg"><Icon name="phone" size={18} /> {site.phone}</a>
                 </div>
               </Reveal>
             </div>
             <div className="split__media">
               <Reveal delay={140}>
                 <div className="media-frame">
-                  <Photo src={s.image} alt={s.imageAlt} icon={s.icon} ratio="4 / 3" rounded={false} />
+                  <Photo src={s.image} alt={s.imageAlt} icon={<Icon name={serviceIconName(s.slug)} size={48} />} ratio="4 / 3" rounded={false} />
                 </div>
               </Reveal>
             </div>
@@ -77,14 +78,14 @@ export default function ServiceDetail({ params }: { params: { slug: string } }) 
         <div className="container">
           <div className="split">
             <div>
-              <Reveal><span className="problemcard"><span aria-hidden>⚠</span> Das Problem</span></Reveal>
+              <Reveal><span className="problemcard"><Icon name="alert" size={16} /> Das Problem</span></Reveal>
               <Reveal delay={80}><p className="lead">{s.problem}</p></Reveal>
               <Reveal delay={140}><h2 style={{ marginTop: "2rem" }}>Unsere Lösung</h2></Reveal>
               <Reveal delay={200}><p>{s.solution}</p></Reveal>
               {s.priceHint && (
                 <Reveal delay={240}>
                   <div className="glass" style={{ padding: "1.4rem 1.6rem", marginTop: "1.4rem" }}>
-                    <strong style={{ display: "block", marginBottom: "0.4rem", color: "var(--copper-bright)", fontFamily: "var(--display)" }}>💶 Was kostet das?</strong>
+                    <strong style={{ display: "block", marginBottom: "0.4rem", color: "var(--copper-bright)", fontFamily: "var(--display)" }}>Was kostet das?</strong>
                     <span style={{ color: "var(--text-soft)" }}>{s.priceHint}</span>
                   </div>
                 </Reveal>
@@ -137,7 +138,7 @@ export default function ServiceDetail({ params }: { params: { slug: string } }) 
             <div className="linkgrid">
               {others.map((o) => (
                 <Link key={o.slug} href={`/leistungen/${o.slug}`} className="linkcard">
-                  {o.icon}&nbsp; {o.title.split(" & ")[0].split(" (")[0]} <span aria-hidden>→</span>
+                  <span aria-hidden style={{ color: "var(--copper-bright)", display: "inline-flex" }}><Icon name={serviceIconName(o.slug)} size={18} /></span> {o.title.split(" & ")[0].split(" (")[0]} <span aria-hidden>→</span>
                 </Link>
               ))}
             </div>

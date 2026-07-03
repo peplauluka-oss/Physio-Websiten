@@ -7,6 +7,7 @@ import TestimonialSlider from "@/components/TestimonialSlider";
 import FaqAccordion from "@/components/FaqAccordion";
 import Reveal from "@/components/Reveal";
 import Stars from "@/components/Stars";
+import Icon from "@/components/Icon";
 import JsonLd, { faqPage } from "@/components/JsonLd";
 
 const ratingStr = site.rating.toString().replace(".", ",");
@@ -45,7 +46,7 @@ export default function Home() {
           <Reveal delay={240}>
             <div className="panel__cta">
               <Link href="/kontakt" className="btn btn--primary btn--lg">Kostenloses Angebot in 24 h</Link>
-              <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg">☎ {site.phone}</a>
+              <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg"><Icon name="phone" size={18} /> {site.phone}</a>
             </div>
           </Reveal>
           <Reveal delay={320}>
@@ -80,7 +81,7 @@ export default function Home() {
           <Reveal delay={240}>
             <div className="statline">
               <div className="statline__it"><b>{site.experienceYears}+</b><span>Jahre Erfahrung</span></div>
-              <div className="statline__it"><b>{ratingStr}★</b><span>bei {site.reviewCount} Bewertungen</span></div>
+              <div className="statline__it"><b style={{ display: "inline-flex", alignItems: "center", gap: "0.2rem" }}>{ratingStr}<Icon name="star" size={26} style={{ color: "var(--copper-bright)" }} /></b><span>bei {site.reviewCount} Bewertungen</span></div>
               <div className="statline__it"><b>2</b><span>Geschäftsstellen</span></div>
               <div className="statline__it"><b>100 %</b><span>Festpreis-Garantie</span></div>
             </div>
@@ -134,7 +135,7 @@ export default function Home() {
       <section className="panel" data-panel id="bewertungen">
         <div className="container panel__in panel__in--wide">
           <Reveal><span className="eyebrow">Kundenstimmen · zum Wischen</span></Reveal>
-          <Reveal delay={80}><h2 className="panel__title panel__title--sm">{ratingStr} ★ bei {site.reviewCount} Google-Bewertungen</h2></Reveal>
+          <Reveal delay={80}><h2 className="panel__title panel__title--sm" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>{ratingStr}<Icon name="star" size={30} style={{ color: "var(--copper-bright)" }} /> bei {site.reviewCount} Google-Bewertungen</h2></Reveal>
           <Reveal delay={140}><TestimonialSlider /></Reveal>
         </div>
       </section>
@@ -152,8 +153,8 @@ export default function Home() {
           <Reveal delay={240}>
             <div className="panel__cta" style={{ justifyContent: "center" }}>
               <Link href="/kontakt" className="btn btn--primary btn--lg">Kostenloses Angebot</Link>
-              <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg">☎ {site.phone}</a>
-              <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn btn--whatsapp btn--lg">WhatsApp</a>
+              <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg"><Icon name="phone" size={18} /> {site.phone}</a>
+              <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn btn--whatsapp btn--lg"><Icon name="whatsapp" size={18} /> WhatsApp</a>
             </div>
           </Reveal>
           <Reveal delay={300}>

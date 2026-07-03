@@ -3,6 +3,7 @@ import { site, whatsappLink } from "@/lib/site";
 import QuoteForm from "@/components/QuoteForm";
 import Reveal from "@/components/Reveal";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Icon from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: { absolute: "Kontakt & kostenloses Angebot | Malermeister Heußer Berlin" },
@@ -39,7 +40,7 @@ export default function Kontakt() {
                   <h3 style={{ marginBottom: "0.4rem" }}>So erreichen Sie uns</h3>
                   <ul className="info-list">
                     <li>
-                      <span className="ic" aria-hidden>☎</span>
+                      <span className="ic" aria-hidden><Icon name="phone" size={20} /></span>
                       <span>
                         <strong style={{ display: "block", color: "var(--text)", fontFamily: "var(--display)" }}>Telefon</strong>
                         <a href={`tel:${site.phoneHref}`}>{site.phone}</a><br />
@@ -47,21 +48,21 @@ export default function Kontakt() {
                       </span>
                     </li>
                     <li>
-                      <span className="ic" aria-hidden>✆</span>
+                      <span className="ic" aria-hidden><Icon name="whatsapp" size={20} /></span>
                       <span>
                         <strong style={{ display: "block", color: "var(--text)", fontFamily: "var(--display)" }}>WhatsApp</strong>
                         <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">Nachricht schreiben</a>
                       </span>
                     </li>
                     <li>
-                      <span className="ic" aria-hidden>✉</span>
+                      <span className="ic" aria-hidden><Icon name="mail" size={20} /></span>
                       <span>
                         <strong style={{ display: "block", color: "var(--text)", fontFamily: "var(--display)" }}>E-Mail</strong>
                         <a href={`mailto:${site.email}`}>{site.email}</a>
                       </span>
                     </li>
                     <li>
-                      <span className="ic" aria-hidden>📍</span>
+                      <span className="ic" aria-hidden><Icon name="pin" size={20} /></span>
                       <span>
                         <strong style={{ display: "block", color: "var(--text)", fontFamily: "var(--display)" }}>Geschäftsstellen</strong>
                         {site.address.district} &amp; {site.branch.district}, Berlin<br />
@@ -69,7 +70,7 @@ export default function Kontakt() {
                       </span>
                     </li>
                     <li>
-                      <span className="ic" aria-hidden>🕑</span>
+                      <span className="ic" aria-hidden><Icon name="clock" size={20} /></span>
                       <span>
                         <strong style={{ display: "block", color: "var(--text)", fontFamily: "var(--display)" }}>Öffnungszeiten</strong>
                         {site.hours.map((h) => (

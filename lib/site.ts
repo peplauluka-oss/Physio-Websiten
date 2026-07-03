@@ -104,7 +104,7 @@ export const services: Service[] = [
     metaDescription:
       "Fassadenanstrich Berlin vom Meisterbetrieb: witterungsfeste Fassaden, Graffitientfernung & Schutz. Festpreis, saubere Arbeit. Jetzt kostenloses Angebot sichern!",
     keyword: "Fassadenanstrich Berlin",
-    icon: "🏢",
+    icon: "building",
     teaser:
       "Witterungsfester Anstrich, professionelle Graffitientfernung und langlebiger Fassadenschutz – damit Ihr Haus wieder repräsentiert.",
     problem:
@@ -152,7 +152,7 @@ export const services: Service[] = [
     metaDescription:
       "Wohnung streichen lassen in Berlin: makellose Wände, edle Farbkonzepte & saubere Ausführung vom Meisterbetrieb. Festpreis & Termintreue. Jetzt Angebot anfordern!",
     keyword: "Wohnung streichen lassen Berlin",
-    icon: "🎨",
+    icon: "roller",
     teaser:
       "Makellose Wände, harmonische Farbkonzepte und ein Ergebnis, das Ihren Räumen Charakter gibt – sauber und termintreu ausgeführt.",
     problem:
@@ -200,7 +200,7 @@ export const services: Service[] = [
     metaDescription:
       "Lackierarbeiten in Berlin vom Meisterbetrieb: Türen, Fenster, Heizkörper & Holz makellos lackiert. Seidige Oberflächen ohne Läufer. Jetzt Festpreis-Angebot holen!",
     keyword: "Lackierarbeiten Berlin",
-    icon: "🪞",
+    icon: "brush",
     teaser:
       "Seidenmatte, widerstandsfähige Oberflächen für Türen, Fenster, Heizkörper und Holzbauteile – ohne Läufer, Staubeinschlüsse oder Pinselstriche.",
     problem:
@@ -244,7 +244,7 @@ export const services: Service[] = [
     metaDescription:
       "Tapezierer Berlin: Designtapeten, Vlies- & Fototapeten passgenau und fugenlos verlegt. Vom Meisterbetrieb, sauber & termintreu. Jetzt kostenloses Angebot anfordern!",
     keyword: "Tapezierer Berlin",
-    icon: "📐",
+    icon: "wallpaper",
     teaser:
       "Von der edlen Designtapete bis zur strukturierten Vliestapete – passgenau, fugenlos und mit perfektem Musterversatz verlegt.",
     problem:
@@ -288,7 +288,7 @@ export const services: Service[] = [
     metaDescription:
       "Altbausanierung & Stuckrestaurierung in Berlin: denkmalgerechte Malerarbeiten, Stuck aufarbeiten & historische Substanz erhalten. Meisterbetrieb. Jetzt anfragen!",
     keyword: "Altbausanierung Maler Berlin",
-    icon: "🏛️",
+    icon: "column",
     teaser:
       "Denkmalgerechte Malerarbeiten, Stuckrestaurierung und der Erhalt historischer Substanz – mit Erfahrung an Berlins schönsten Altbauten.",
     problem:
@@ -332,7 +332,7 @@ export const services: Service[] = [
     metaDescription:
       "Büro & Gewerbe streichen in Berlin: Malerarbeiten abends & am Wochenende, ohne Betriebsunterbrechung. Termintreu & sauber vom Meisterbetrieb. Jetzt Angebot holen!",
     keyword: "Büro streichen Berlin",
-    icon: "🏬",
+    icon: "office",
     teaser:
       "Malerarbeiten für Büros, Praxen, Läden und Gewerbeflächen – planbar, termintreu und auf Wunsch außerhalb Ihrer Geschäftszeiten.",
     problem:
@@ -627,19 +627,19 @@ export const process = [
     step: "01",
     title: "Anfrage & kostenloses Angebot",
     text: "Sie schildern uns Ihr Vorhaben – telefonisch, per WhatsApp oder über das Formular. Innerhalb von 24 Stunden melden wir uns mit ersten Einschätzungen.",
-    icon: "📞",
+    icon: "phone",
   },
   {
     step: "02",
     title: "Besichtigung & Festpreis",
     text: "Wir schauen uns Ihr Objekt vor Ort an, beraten zu Materialien und Farben und erstellen ein transparentes Angebot mit verbindlichem Festpreis – ohne versteckte Kosten.",
-    icon: "📋",
+    icon: "clipboard",
   },
   {
     step: "03",
     title: "Saubere Ausführung",
     text: "Wir arbeiten termintreu, staubarm und sorgfältig abgedeckt. Zum vereinbarten Termin übergeben wir Ihre Räume besenrein – und Sie genießen das Ergebnis.",
-    icon: "✨",
+    icon: "sparkles",
   },
 ];
 
@@ -677,12 +677,12 @@ export const homeFaq: FaqItem[] = [
 // GALERIE / VORHER-NACHHER (Platzhalter – TODO echte Projektfotos)
 // ============================================================
 export const gallery = [
-  { src: "/images/projekt-altbau-prenzlauer-berg.avif", label: "Altbau · Prenzlauer Berg", icon: "🏛️" },
-  { src: "/images/projekt-fassade-einfamilienhaus.avif", label: "Fassade · Einfamilienhaus", icon: "🏢" },
-  { src: "/images/projekt-designtapete-wohnzimmer.avif", label: "Designtapete · Wohnzimmer", icon: "📐" },
-  { src: "/images/projekt-dachgeschoss-pankow.avif", label: "Dachgeschoss · Pankow", icon: "🎨" },
-  { src: "/images/projekt-stuck-restaurierung.avif", label: "Stuckrestaurierung · Mitte", icon: "🏛️" },
-  { src: "/images/projekt-buero-gewerbe.avif", label: "Büro · Gewerbe", icon: "🏬" },
+  { src: "/images/projekt-altbau-prenzlauer-berg.avif", label: "Altbau · Prenzlauer Berg", icon: "column" },
+  { src: "/images/projekt-fassade-einfamilienhaus.avif", label: "Fassade · Einfamilienhaus", icon: "building" },
+  { src: "/images/projekt-designtapete-wohnzimmer.avif", label: "Designtapete · Wohnzimmer", icon: "wallpaper" },
+  { src: "/images/projekt-dachgeschoss-pankow.avif", label: "Dachgeschoss · Pankow", icon: "roller" },
+  { src: "/images/projekt-stuck-restaurierung.avif", label: "Stuckrestaurierung · Mitte", icon: "column" },
+  { src: "/images/projekt-buero-gewerbe.avif", label: "Büro · Gewerbe", icon: "office" },
 ];
 
 export const beforeAfter = [

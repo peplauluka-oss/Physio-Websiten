@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { services, whatsappLink } from "@/lib/site";
+import Icon, { serviceIconName } from "@/components/Icon";
 
 const scopeOptions = [
   { v: "einzelraum", label: "Einzelner Raum" },
@@ -69,7 +70,7 @@ export default function QuoteForm() {
     return (
       <div className="form-card glass">
         <div className="form-success">
-          <div className="form-success__icon" aria-hidden>✓</div>
+          <div className="form-success__icon" aria-hidden><Icon name="check" size={34} /></div>
           <h3>Anfrage bereit – vielen Dank, {data.name.split(" ")[0]}!</h3>
           <p>
             Wir melden uns innerhalb von 24 Stunden mit einer ersten Einschätzung.
@@ -113,7 +114,7 @@ export default function QuoteForm() {
                   checked={data.service === s.slug} onChange={() => set("service", s.slug)}
                 />
                 <label htmlFor={`svc-${s.slug}`}>
-                  <span aria-hidden>{s.icon}</span> {s.title.split(" & ")[0].split(" (")[0]}
+                  <span aria-hidden style={{ color: "var(--copper-bright)", display: "inline-flex" }}><Icon name={serviceIconName(s.slug)} size={20} /></span> {s.title.split(" & ")[0].split(" (")[0]}
                 </label>
               </div>
             ))}

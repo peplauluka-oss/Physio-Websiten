@@ -1,11 +1,12 @@
-/** Sterne-Rating als barrierefreie Grafik. */
-export default function Stars({ value = 5, label }: { value?: number; label?: string }) {
-  const full = Math.floor(value);
-  const stars = Array.from({ length: 5 }, (_, i) => (i < full ? "★" : "☆"));
+import Icon from "@/components/Icon";
+
+/** Sterne-Rating als SVG-Grafik (kein Emoji). */
+export default function Stars({ value = 5, label, size = 18 }: { value?: number; label?: string; size?: number }) {
+  const full = Math.round(value);
   return (
     <span className="stars" role="img" aria-label={label ?? `${value} von 5 Sternen`}>
-      {stars.map((s, i) => (
-        <span key={i} aria-hidden>{s}</span>
+      {Array.from({ length: 5 }, (_, i) => (
+        <Icon key={i} name="star" size={size} className={i < full ? "star--on" : "star--off"} />
       ))}
     </span>
   );

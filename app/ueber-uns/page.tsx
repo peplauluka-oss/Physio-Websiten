@@ -4,6 +4,7 @@ import { site, process } from "@/lib/site";
 import Reveal from "@/components/Reveal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CtaBanner from "@/components/CtaBanner";
+import Icon, { type IconName } from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: { absolute: "Über uns – Meisterbetrieb für Maler in Berlin | Heußer" },
@@ -13,12 +14,12 @@ export const metadata: Metadata = {
 };
 
 const values = [
-  { icon: "🎓", title: "Meisterqualität", text: "Als eingetragener Meisterbetrieb haften wir für unsere Arbeit – geprüftes Handwerk statt Kolonne." },
-  { icon: "🧹", title: "Sauberkeit", text: "Sorgfältig abgedeckt, jeden Abend aufgeräumt, besenreine Übergabe. Ihr Zuhause bleibt Ihr Zuhause." },
-  { icon: "⏱️", title: "Termintreue", text: "Vereinbarte Termine halten wir ein. Verlässlichkeit ist bei uns keine Floskel, sondern Standard." },
-  { icon: "💶", title: "Festpreis", text: "Ein verbindliches Angebot nach Besichtigung – keine bösen Überraschungen am Ende." },
-  { icon: "🏛️", title: "Altbau-Erfahrung", text: "Denkmalgerechtes Arbeiten an Berlins historischer Bausubstanz – vom Stuck bis zur Fassade." },
-  { icon: "🎨", title: "Farrow & Ball", text: "Als Partner arbeiten wir mit Premium-Farben und beraten Sie zu stimmigen Farbkonzepten." },
+  { icon: "shield", title: "Meisterqualität", text: "Als eingetragener Meisterbetrieb haften wir für unsere Arbeit – geprüftes Handwerk statt Kolonne." },
+  { icon: "broom", title: "Sauberkeit", text: "Sorgfältig abgedeckt, jeden Abend aufgeräumt, besenreine Übergabe. Ihr Zuhause bleibt Ihr Zuhause." },
+  { icon: "clock", title: "Termintreue", text: "Vereinbarte Termine halten wir ein. Verlässlichkeit ist bei uns keine Floskel, sondern Standard." },
+  { icon: "euro", title: "Festpreis", text: "Ein verbindliches Angebot nach Besichtigung – keine bösen Überraschungen am Ende." },
+  { icon: "column", title: "Altbau-Erfahrung", text: "Denkmalgerechtes Arbeiten an Berlins historischer Bausubstanz – vom Stuck bis zur Fassade." },
+  { icon: "roller", title: "Farrow & Ball", text: "Als Partner arbeiten wir mit Premium-Farben und beraten Sie zu stimmigen Farbkonzepten." },
 ];
 
 export default function UeberUns() {
@@ -67,7 +68,7 @@ export default function UeberUns() {
               <Reveal delay={120}>
                 <div className="stats" style={{ gridTemplateColumns: "repeat(2,1fr)" }}>
                   <div className="stat"><div className="stat__num">{site.experienceYears}+</div><div className="stat__label">Jahre Erfahrung</div></div>
-                  <div className="stat"><div className="stat__num">{site.rating.toString().replace(".", ",")}★</div><div className="stat__label">Google-Rating</div></div>
+                  <div className="stat"><div className="stat__num" style={{ display: "inline-flex", alignItems: "center", gap: "0.15rem" }}>{site.rating.toString().replace(".", ",")}<Icon name="star" size={22} style={{ color: "var(--copper-bright)" }} /></div><div className="stat__label">Google-Rating</div></div>
                   <div className="stat"><div className="stat__num">{site.reviewCount}</div><div className="stat__label">Bewertungen</div></div>
                   <div className="stat"><div className="stat__num">100 %</div><div className="stat__label">Festpreis</div></div>
                 </div>
@@ -87,7 +88,7 @@ export default function UeberUns() {
             {values.map((v, i) => (
               <Reveal key={v.title} delay={i * 60}>
                 <div className="card">
-                  <div className="card__icon" aria-hidden>{v.icon}</div>
+                  <div className="card__icon" aria-hidden><Icon name={v.icon as IconName} size={26} /></div>
                   <h3>{v.title}</h3>
                   <p>{v.text}</p>
                 </div>
@@ -108,7 +109,7 @@ export default function UeberUns() {
               <Reveal key={p.step} delay={i * 90}>
                 <div className="process__step glass">
                   <div className="process__num">{p.step}</div>
-                  <div className="process__icon" aria-hidden>{p.icon}</div>
+                  <div className="process__icon" aria-hidden><Icon name={p.icon as IconName} size={26} /></div>
                   <h3>{p.title}</h3>
                   <p>{p.text}</p>
                 </div>

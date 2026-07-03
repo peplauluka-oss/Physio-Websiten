@@ -1,17 +1,33 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { services } from "@/lib/site";
+import { asset } from "@/lib/asset";
+import Icon, { serviceIconName } from "@/components/Icon";
 
 /**
- * Nach rechts schwebende Leistungs-Karten mit 3D-Rotation: Der Track driftet
- * kontinuierlich, jede Karte rotiert je nach Bildschirmposition (Mitte frontal,
- * Ränder gekippt) und wippt sanft – ein floatendes 3D-Karussell. Pausiert bei
- * Hover/Touch, respektiert prefers-reduced-motion. Karten sind verlinkt.
+ * Nach rechts schwebende Leistungs-Karten im Glas-Look: echtes Foto im
+ * Hintergrund, darüber eine frostige Glas-Ebene (backdrop-blur) – man sieht
+ * das Bild, kann aber die Schrift klar lesen. Der Track driftet, jede Karte
+ * rotiert je nach Bildschirmposition in 3D und wippt sanft. Pausiert bei
+ * Hover/Touch, respektiert prefers-reduced-motion.
  */
+
+function CardBg({ src }: { src: string }) {
+  const [ok, setOk] = useState(true);
+  if (!ok) return <span className="floatcard__bg" />;
+  return (
+    <span className="floatcard__bg">
+      {/* Dekoratives Hintergrundfoto (alt leer – Titel trägt die Bedeutung).
+          Fehlt das Foto noch, wird das img entfernt und der Glas-Verlauf bleibt. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={asset(src)} alt="" aria-hidden loading="lazy" onError={() => setOk(false)} />
+    </span>
+  );
+}
+
 export default function FloatingCards() {
-  const wrap = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const paused = useRef(false);
 
@@ -21,17 +37,15 @@ export default function FloatingCards() {
     if (!t) return;
     let raf = 0;
     let offset = 0;
-    const speed = 0.5; // px/Frame – driftet nach rechts
+    const speed = 0.5;
 
     const frame = () => {
       const half = t.scrollWidth / 2 || 1;
       if (!reduce && !paused.current) {
         offset -= speed;
-        if (offset <= -half) offset += half; // nahtlose Schleife (Liste ist verdoppelt)
+        if (offset <= -half) offset += half;
       }
       t.style.transform = `translateX(${offset}px)`;
-
-      // 3D-Rotation je nach horizontaler Bildschirmposition
       const cx = window.innerWidth / 2;
       const kids = t.children;
       for (let i = 0; i < kids.length; i++) {
@@ -49,35 +63,44 @@ export default function FloatingCards() {
   }, []);
 
   const setPaused = (v: boolean) => () => { paused.current = v; };
-  const list = [...services, ...services]; // verdoppelt für die Endlos-Schleife
+  const list = [...services, ...services];
 
   return (
     <div
       className="floatwrap"
-      ref={wrap}
       onPointerEnter={setPaused(true)}
       onPointerLeave={setPaused(false)}
       onTouchStart={setPaused(true)}
       onTouchEnd={setPaused(false)}
     >
       <div className="floattrack" ref={track}>
-        {list.map((s, i) => (
-          <Link
-            key={i}
-            href={`/leistungen/${s.slug}`}
-            className="floatcard"
-            aria-hidden={i >= services.length ? true : undefined}
-            tabIndex={i >= services.length ? -1 : undefined}
-          >
-            <span className="floatcard__in">
-              <span className="sw-card__num" aria-hidden>{String((i % services.length) + 1).padStart(2, "0")}</span>
-              <span className="sw-card__icon" aria-hidden>{s.icon}</span>
-              <span className="floatcard__title">{s.title.split(" & ")[0].split(" (")[0]}</span>
-              <span className="floatcard__text">{s.teaser}</span>
-              <span className="sw-card__link">Mehr erfahren <span aria-hidden>→</span></span>
-            </span>
-          </Link>
-        ))}
+        {list.map((s, i) => {
+          const primary = i < services.length;
+          return (
+            <Link
+              key={i}
+              href={`/leistungen/${s.slug}`}
+              className="floatcard"
+              aria-hidden={!primary ? true : undefined}
+              tabIndex={!primary ? -1 : undefined}
+              aria-label={s.title}
+            >
+              <span className="floatcard__in">
+                <CardBg src={s.image} />
+                <span className="floatcard__glass" />
+                <span className="floatcard__content">
+                  <span className="floatcard__top">
+                    <span className="floatcard__ic"><Icon name={serviceIconName(s.slug)} size={22} /></span>
+                    <span className="floatcard__num">{String((i % services.length) + 1).padStart(2, "0")}</span>
+                  </span>
+                  <span className="floatcard__title">{s.title.split(" & ")[0].split(" (")[0]}</span>
+                  <span className="floatcard__text">{s.teaser}</span>
+                  <span className="floatcard__link">Mehr erfahren <Icon name="arrow" size={18} /></span>
+                </span>
+              </span>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

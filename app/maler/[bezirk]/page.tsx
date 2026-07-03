@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import TestimonialSlider from "@/components/TestimonialSlider";
 import CtaBanner from "@/components/CtaBanner";
 import Stars from "@/components/Stars";
+import Icon, { serviceIconName } from "@/components/Icon";
 
 export function generateStaticParams() {
   return districts.map((d) => ({ bezirk: d.slug }));
@@ -43,7 +44,7 @@ export default function DistrictPage({ params }: { params: { bezirk: string } })
           <Reveal delay={220}>
             <div className="hero__cta" style={{ marginTop: "1.6rem" }}>
               <Link href="/kontakt" className="btn btn--primary btn--lg">Angebot für {d.name}</Link>
-              <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg">☎ {site.phone}</a>
+              <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg"><Icon name="phone" size={18} /> {site.phone}</a>
             </div>
           </Reveal>
           <Reveal delay={280}>
@@ -96,7 +97,7 @@ export default function DistrictPage({ params }: { params: { bezirk: string } })
             <div className="cards">
               {featured.map((s) => s && (
                 <Link key={s.slug} href={`/leistungen/${s.slug}`} className="card" style={{ display: "block" }}>
-                  <div className="card__icon" aria-hidden>{s.icon}</div>
+                  <div className="card__icon" aria-hidden><Icon name={serviceIconName(s.slug)} size={26} /></div>
                   <h3>{s.title.split(" & ")[0].split(" (")[0]}</h3>
                   <p>{s.teaser}</p>
                   <span className="card__link">Mehr erfahren <span aria-hidden>→</span></span>

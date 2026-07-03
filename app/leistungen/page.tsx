@@ -4,6 +4,7 @@ import { services, site } from "@/lib/site";
 import TiltCard from "@/components/TiltCard";
 import Reveal from "@/components/Reveal";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Icon, { serviceIconName } from "@/components/Icon";
 import CtaBanner from "@/components/CtaBanner";
 
 export const metadata: Metadata = {
@@ -37,7 +38,7 @@ export default function LeistungenPage() {
               <Reveal key={s.slug} delay={i * 60}>
                 <Link href={`/leistungen/${s.slug}`} style={{ display: "block", height: "100%" }}>
                   <TiltCard>
-                    <div className="card__icon" aria-hidden>{s.icon}</div>
+                    <div className="card__icon" aria-hidden><Icon name={serviceIconName(s.slug)} size={26} /></div>
                     <h3>{s.title}</h3>
                     <p>{s.teaser}</p>
                     <span className="card__link">Zur Leistung <span aria-hidden>→</span></span>
