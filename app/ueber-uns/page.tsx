@@ -5,6 +5,7 @@ import Reveal from "@/components/Reveal";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CtaBanner from "@/components/CtaBanner";
 import Icon, { type IconName } from "@/components/Icon";
+import Photo from "@/components/Photo";
 
 export const metadata: Metadata = {
   title: { absolute: "Über uns – Meisterbetrieb für Maler in Berlin | Heußer" },
@@ -65,6 +66,11 @@ export default function UeberUns() {
               </Reveal>
             </div>
             <div>
+              <Reveal delay={100}>
+                <div className="media-frame" style={{ marginBottom: "1.2rem" }}>
+                  <Photo src="/images/malermeister-heusser-portraet.jpg" alt="Malermeister Heußer mit Team bei Malerarbeiten in Berlin" ratio="4 / 3" rounded={false} />
+                </div>
+              </Reveal>
               <Reveal delay={120}>
                 <div className="stats" style={{ gridTemplateColumns: "repeat(2,1fr)" }}>
                   <div className="stat"><div className="stat__num">{site.experienceYears}+</div><div className="stat__label">Jahre Erfahrung</div></div>
@@ -116,6 +122,20 @@ export default function UeberUns() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="section__head">
+            <Reveal><span className="eyebrow">Ein eingespieltes Team</span></Reveal>
+            <Reveal delay={80}><h2>Die Menschen hinter dem Meisterbetrieb</h2></Reveal>
+          </div>
+          <Reveal delay={120}>
+            <div className="media-frame">
+              <Photo src="/images/team-malermeister-heusser-berlin.jpg" alt="Das Team von Malermeister Heußer bei der Arbeit in Berlin" ratio="16 / 7" rounded={false} />
+            </div>
+          </Reveal>
         </div>
       </section>
 

@@ -123,7 +123,7 @@ export const services: Service[] = [
       "„Die Fassade unseres Einfamilienhauses sieht aus wie neu – saubere Arbeit, alles termingerecht.“ – Google-Bewertung",
     priceHint:
       "Ein Fassadenanstrich in Berlin kostet je nach Fläche, Zustand und Gerüst meist zwischen 40 und 90 € pro m². Sie erhalten von uns immer einen verbindlichen Festpreis nach Besichtigung.",
-    image: "/images/fassadenanstrich-berlin-altbau.avif",
+    image: "/images/fassadenanstrich-berlin-altbau.jpg",
     imageAlt: "Frisch gestrichene Altbaufassade in Berlin vom Malermeister Heußer",
     faq: [
       {
@@ -171,7 +171,7 @@ export const services: Service[] = [
       "„Unsere Altbauwohnung wurde mit einem Farrow-&-Ball-Farbkonzept renoviert – das Ergebnis ist einfach edel.“ – Google-Bewertung",
     priceHint:
       "Eine 3-Zimmer-Wohnung zu streichen kostet in Berlin – je nach Zustand, Vorarbeiten und Farbwunsch – meist zwischen 1.500 und 4.000 €. Nach der Besichtigung nennen wir Ihnen einen fairen Festpreis.",
-    image: "/images/wohnung-streichen-berlin-innenanstrich.avif",
+    image: "/images/wohnung-streichen-berlin-innenanstrich.jpg",
     imageAlt: "Frisch gestrichener heller Wohnraum in einer Berliner Altbauwohnung",
     faq: [
       {
@@ -219,7 +219,7 @@ export const services: Service[] = [
       "„Termintreu, sauber und wirklich präzise gearbeitet.“ – Google-Bewertung",
     priceHint:
       "Lackierarbeiten rechnen wir je nach Bauteil ab – eine Zimmertür inkl. Zarge liegt oft bei 120–250 €. Sie bekommen vorab einen klaren Festpreis.",
-    image: "/images/lackierarbeiten-berlin-tueren-fenster.avif",
+    image: "/images/lackierarbeiten-berlin-tueren-fenster.jpg",
     imageAlt: "Frisch lackierte weiße Zimmertür mit seidenmatter Oberfläche in Berlin",
     faq: [
       {
@@ -263,7 +263,7 @@ export const services: Service[] = [
       "„Absolut sauber gearbeitet, die Designtapete sitzt perfekt.“ – Google-Bewertung",
     priceHint:
       "Tapezierarbeiten liegen – je nach Tapetenart und Untergrund – meist bei 8–20 € pro m² zzgl. Material. Für Designtapeten kalkulieren wir individuell.",
-    image: "/images/designtapeten-berlin-tapezierer.avif",
+    image: "/images/designtapeten-berlin-tapezierer.jpg",
     imageAlt: "Elegante Designtapete an einer Akzentwand in einer Berliner Wohnung",
     faq: [
       {
@@ -307,7 +307,7 @@ export const services: Service[] = [
       "„Man merkt die Erfahrung mit Altbauten – der Stuck wurde liebevoll wiederhergestellt.“ – Google-Bewertung",
     priceHint:
       "Altbau- und Stuckarbeiten sind individuell – wir besichtigen die Substanz vor Ort und erstellen ein transparentes Angebot Position für Position.",
-    image: "/images/altbausanierung-berlin-stuckrestaurierung.avif",
+    image: "/images/altbausanierung-berlin-stuckrestaurierung.jpg",
     imageAlt: "Restaurierte Stuckdecke in einem Berliner Altbau nach Sanierung",
     faq: [
       {
@@ -351,7 +351,7 @@ export const services: Service[] = [
       "„Als Tischlerei arbeiten wir regelmäßig mit Heußer zusammen – verlässlich und handwerklich top.“ – Google-Bewertung (B2B)",
     priceHint:
       "Gewerbeprojekte kalkulieren wir nach Fläche, Nutzung und Zeitfenster – transparent und mit ausweisbarer Rechnung. Angebot innerhalb von 24 Stunden.",
-    image: "/images/buero-streichen-berlin-gewerbe.avif",
+    image: "/images/buero-streichen-berlin-gewerbe.jpg",
     imageAlt: "Modern gestaltetes Büro in Berlin nach Malerarbeiten vom Meisterbetrieb",
     faq: [
       {
