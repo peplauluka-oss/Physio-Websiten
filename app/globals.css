@@ -488,12 +488,20 @@ img { max-width: 100%; display: block; }
 .swipe::after { right: 0; background: linear-gradient(270deg, var(--cream), transparent); }
 .swipe--onsand::before { background: linear-gradient(90deg, var(--sand), transparent); }
 .swipe--onsand::after { background: linear-gradient(270deg, var(--sand), transparent); }
+.swipe__viewport {
+  overflow-x: auto; overflow-y: hidden;
+  scrollbar-width: none; -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  cursor: grab;
+}
+.swipe__viewport::-webkit-scrollbar { display: none; }
+.swipe__viewport:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+.swipe__viewport.is-dragging { cursor: grabbing; }
 .swipe__track {
   display: flex; gap: 1.5rem; width: max-content;
-  animation: marquee 42s linear infinite;
 }
-.swipe:hover .swipe__track { animation-play-state: paused; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .swipe__item {
   width: 300px; flex: none;
   border-radius: var(--radius);
