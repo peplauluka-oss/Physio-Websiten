@@ -1,15 +1,14 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (Maler – in diesem Repo DEAKTIVIERT)
 
-# Eigenständiges Deployment NUR der Maler-Seite in ihr eigenes Repository.
-# Der Pages-Unterpfad wird automatisch aus dem Repo-Namen abgeleitet
-# (next.config.mjs liest GITHUB_REPOSITORY), z. B. …github.io/Maler-Seite-/.
-# Triggert auf `main` – im Physio-Repo (anderer Branch) bleibt der Workflow
-# damit inaktiv und kann die Physio-Seite nicht mehr überschreiben.
+# WICHTIG: Dieses Repo (Physio-Websiten) hostet die PHYSIO-Seite über GitHub
+# Pages (Deploy aus Branch claude/physio-websiten-init-lr1lnm).
+# Die Maler-Seite gehört in ihr EIGENES Repository und darf hier NICHT mehr
+# deployen, sonst überschreibt sie die Physio-Seite auf derselben Pages-URL.
+# Daher kein Auto-Trigger auf `main` – nur noch manuell auslösbar.
+# Der aktuelle Maler-Stand liegt im Branch claude/heusser-maler-berlin-relaunch-374x66
+# (dort ist der Workflow aktiv und triggert im Maler-Repo auf `main`).
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
