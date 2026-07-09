@@ -27,32 +27,28 @@ export default function Home() {
     <div className="home">
       <SectionProgress labels={panelLabels} />
 
-      {/* 1 — HERO: vollflächiges Farbrollen-Intro */}
-      <section className="panel panel--hero" data-panel id="start">
-        <PaintRollerHero />
-        <div className="container panel__in rhero__content">
-          <span className="eyebrow rhero__eyebrow">Meisterbetrieb · Berlin · seit über {site.experienceYears} Jahren</span>
-          <h1 className="panel__title rhero__title">
-            Aus kahlen Wänden<br />wird <em>Ihr Zuhause</em>.
-          </h1>
-          <p className="panel__lead rhero__lead">
-            Malermeister Heußer bringt Fassaden, Altbauten und Wohnräume in ganz Berlin
-            zum Strahlen – sauber, termintreu und zum Festpreis.
-          </p>
-          <div className="panel__cta rhero__cta">
-            <Link href="/kontakt" className="btn btn--primary btn--lg">Kostenloses Angebot in 24 h</Link>
-            <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg"><Icon name="phone" size={18} /> {site.phone}</a>
-          </div>
-          <div className="trustrow rhero__trust">
-            <span className="trustrow__item"><Stars value={5} label={`${ratingStr} von 5`} /> <span><span className="num">{ratingStr}</span>/5</span></span>
-            <span className="trustrow__sep" aria-hidden />
-            <span className="trustrow__item"><span className="num">{site.reviewCount}</span>&nbsp;Google-Bewertungen</span>
-            <span className="trustrow__sep" aria-hidden />
-            <span className="trustrow__item">Farrow &amp; Ball Partner</span>
-          </div>
+      {/* 1 — HERO: scroll-gesteuertes Farbrollen→Vorhang→Raum-Intro */}
+      <PaintRollerHero>
+        <span className="eyebrow rhero__eyebrow">Meisterbetrieb · Berlin · seit über {site.experienceYears} Jahren</span>
+        <h1 className="panel__title rhero__title">
+          Aus kahlen Wänden<br />wird <em>Ihr Zuhause</em>.
+        </h1>
+        <p className="panel__lead rhero__lead">
+          Malermeister Heußer bringt Fassaden, Altbauten und Wohnräume in ganz Berlin
+          zum Strahlen – sauber, termintreu und zum Festpreis.
+        </p>
+        <div className="panel__cta rhero__cta">
+          <Link href="/kontakt" className="btn btn--primary btn--lg">Kostenloses Angebot in 24 h</Link>
+          <a href={`tel:${site.phoneHref}`} className="btn btn--ghost btn--lg"><Icon name="phone" size={18} /> {site.phone}</a>
         </div>
-        <span className="scroll-hint" aria-hidden>Swipe / Scroll <span>↓</span></span>
-      </section>
+        <div className="trustrow rhero__trust">
+          <span className="trustrow__item"><Stars value={5} label={`${ratingStr} von 5`} /> <span><span className="num">{ratingStr}</span>/5</span></span>
+          <span className="trustrow__sep" aria-hidden />
+          <span className="trustrow__item"><span className="num">{site.reviewCount}</span>&nbsp;Google-Bewertungen</span>
+          <span className="trustrow__sep" aria-hidden />
+          <span className="trustrow__item">Farrow &amp; Ball Partner</span>
+        </div>
+      </PaintRollerHero>
 
       {/* 2 — ERFAHRUNG / STORY */}
       <section className="panel" data-panel id="erfahrung">
