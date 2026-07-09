@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Icon from "./Icon";
+import { site } from "@/lib/site";
 
 const links = [
   { href: "/", label: "Start" },
@@ -18,6 +19,25 @@ export default function Header() {
 
   return (
     <header className="header">
+      {/* Schnell-Infos: Standort & Öffnungszeiten immer griffbereit */}
+      <div className="topbar">
+        <div className="container topbar__inner">
+          <a
+            className="topbar__item"
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.mapQuery)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="pin" /> {site.address.street}, {site.address.city}
+          </a>
+          <span className="topbar__item">
+            <Icon name="clock" /> Mo–Do 08–19 Uhr · Fr 08–14 Uhr
+          </span>
+          <a className="topbar__item" href={`tel:${site.phoneHref}`}>
+            <Icon name="phone" /> {site.phone}
+          </a>
+        </div>
+      </div>
       <div className="container header__inner">
         <Link href="/" className="brand" onClick={() => setOpen(false)}>
           <span className="brand__mark" aria-hidden>

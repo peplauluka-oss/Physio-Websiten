@@ -15,7 +15,7 @@ export default function Footer() {
               </span>
               <span className="brand__text">Praxis Rammelt</span>
             </div>
-            <p>{site.tagline}. Herzliche Physiotherapie in {site.address.district}, Berlin.</p>
+            <p>{site.tagline} – wirksame Behandlungen, ein herzliches Team und Zeit für Sie.</p>
           </div>
 
           <div>
@@ -30,12 +30,32 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4>Kontakt</h4>
+            <h4>Standort &amp; Kontakt</h4>
             <ul className="footer__links">
-              <li>{site.address.street}</li>
-              <li>{site.address.city}</li>
+              <li>{site.address.street}, {site.address.city}</li>
+              <li>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.mapQuery)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Route planen (Google Maps)
+                </a>
+              </li>
               <li><a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
               <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Öffnungszeiten</h4>
+            <ul className="footer__links footer__hours">
+              {site.hours.map((h) => (
+                <li key={h.day}>
+                  <span>{h.day}</span>
+                  <strong>{h.time}</strong>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

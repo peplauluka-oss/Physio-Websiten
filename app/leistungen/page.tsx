@@ -7,15 +7,43 @@ import SceneBackground from "@/components/SceneBackground";
 import { services, images, site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Leistungen",
+  title: "Leistungen – Physiotherapie, Massage & mehr",
   description:
-    "Unsere Leistungen: Manuelle Therapie, Marnitz-Therapie, Krankengymnastik, Lymphdrainage, Hot-Stone- & klassische Massage, Dorn, Brügger, Bobath, Wärme- und Elektrotherapie sowie Hausbesuche.",
+    "Alle Behandlungsmethoden im Überblick: Manuelle Therapie, Krankengymnastik, Marnitz-Therapie, Lymphdrainage, Hot-Stone- & klassische Massage, Dorn, Brügger, Bobath, Wärme- und Elektrotherapie sowie Hausbesuche in Berlin Prenzlauer Berg.",
 };
+
+/** Strukturierte Daten (JSON-LD): jede Behandlungsmethode als eigene
+ *  Therapie-Position – hilft Suchmaschinen, das Angebot zu verstehen. */
+function servicesJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    name: site.name,
+    telephone: site.phoneHref,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: site.address.street,
+      addressLocality: "Berlin",
+      postalCode: site.address.city.split(" ")[0],
+      addressCountry: "DE",
+    },
+    openingHours: ["Mo-Th 08:00-19:00", "Fr 08:00-14:00"],
+    availableService: services.map((s) => ({
+      "@type": "MedicalTherapy",
+      name: s.title,
+      description: s.short,
+    })),
+  };
+}
 
 export default function ServicesPage() {
   return (
     <div className="subpage">
       <SceneBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd()) }}
+      />
       <section className="page-header">
         <span className="orb orb--rose" />
         <span className="orb orb--sage" />
@@ -30,23 +58,51 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="section section--cream">
-        <div className="container">
-          <div className="grid grid--2">
-            {services.map((s, i) => (
-              <Reveal key={s.slug} delay={(i % 2) * 90}>
-                <article className="card" id={s.slug}>
-                  <div className="card__icon" aria-hidden>
-                    <Icon name={s.icon} />
-                  </div>
-                  <h3>{s.title}</h3>
-                  <p>{s.description}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+      {/* Sprungmarken: direkt zur gewünschten Behandlung */}
+      <nav className="service-nav" aria-label="Direkt zu einer Behandlungsmethode">
+        <div className="container service-nav__inner">
+          {services.map((s) => (
+            <a key={s.slug} href={`#${s.slug}`} className="service-nav__chip">
+              <Icon name={s.icon} /> {s.title}
+            </a>
+          ))}
         </div>
-      </section>
+      </nav>
+
+      {/* Jede Behandlungsmethode als eigene Sektion */}
+      {services.map((s, i) => (
+        <section
+          key={s.slug}
+          id={s.slug}
+          className={`section service-section ${i % 2 ? "section--blush" : "section--cream"}`}
+        >
+          <div className={`container split ${i % 2 ? "split--reverse" : ""}`}>
+            <div className="service-section__media" aria-hidden>
+              <Reveal>
+                <div className="service-section__icon">
+                  <Icon name={s.icon} />
+                </div>
+              </Reveal>
+            </div>
+            <div className="split__body">
+              <Reveal>
+                <span className="eyebrow">Behandlungsmethode</span>
+                <h2>{s.title}</h2>
+                <p className="service-section__short">{s.short}</p>
+                <p>{s.description}</p>
+                <div className="service-section__actions">
+                  <Link href="/kontakt" className="btn btn--primary">
+                    Termin anfragen
+                  </Link>
+                  <a href={`tel:${site.phoneHref}`} className="btn btn--ghost">
+                    <Icon name="phone" /> {site.phone}
+                  </a>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      ))}
 
       <section className="section section--blush">
         <div className="container split">
