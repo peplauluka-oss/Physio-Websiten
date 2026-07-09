@@ -76,7 +76,18 @@ function Helix({ p }: { p: Pal }) {
   });
   return (
     <group ref={group} rotation={[0, 0, 0.16]}>
-      <SpineModel segments={22} pitch={0.52} curveAmp={0.5} color="#fffdf8" disc="#ffd8e6" glow={p.key} emissive={p.dark ? 0.9 : 0.82} ribs />
+      <group scale={0.68}>
+        <SpineModel
+          segments={12}
+          pitch={0.64}
+          curveAmp={0.4}
+          color={p.dark ? "#fffdf8" : "#f9efdf"}
+          disc={p.dark ? "#f2a8c4" : "#dc7fa6"}
+          glow={p.key}
+          emissive={p.dark ? 0.9 : 0.3}
+          ribs
+        />
+      </group>
       <Sparkles count={50} scale={[7, 9, 7]} size={3} speed={0.3} color={p.spark} opacity={0.7} />
       {p.feminine && p.petals && <PetalField colors={p.petals} />}
     </group>
@@ -104,8 +115,8 @@ export default function DnaScene() {
       <Helix p={p} />
       <EffectComposer>
         <Bloom
-          intensity={p.dark ? 0.85 : 0.42}
-          luminanceThreshold={p.dark ? 0.15 : 0.62}
+          intensity={p.dark ? 0.85 : 0.3}
+          luminanceThreshold={p.dark ? 0.15 : 0.78}
           luminanceSmoothing={0.9}
           mipmapBlur
           radius={0.7}

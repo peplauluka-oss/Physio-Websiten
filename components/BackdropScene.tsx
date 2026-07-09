@@ -23,7 +23,7 @@ function DnaBackdrop({ colors, dark }: { colors: { a: string; b: string; rung: s
   });
   return (
     <group ref={g} rotation={[0, 0, 0.22]} position={[1.9, 0, 0]} scale={0.95}>
-      <SpineModel segments={26} pitch={0.5} curveAmp={0.5} glow={colors.rung} emissive={dark ? 0.5 : 0.32} ribs={false} />
+      <SpineModel segments={16} pitch={0.58} curveAmp={0.45} glow={colors.rung} emissive={dark ? 0.5 : 0.32} ribs={false} />
     </group>
   );
 }

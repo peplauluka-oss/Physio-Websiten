@@ -37,7 +37,7 @@ function Traveller({ colorRung }: { colorRung: string }) {
 
   return (
     <group ref={group}>
-      <SpineModel segments={SEG} pitch={PITCH} curveAmp={0.6} glow={colorRung} emissive={0.75} ribs />
+      <SpineModel segments={SEG} pitch={PITCH} curveAmp={0.6} disc="#e895b8" glow={colorRung} emissive={0.42} ribs />
     </group>
   );
 }
@@ -56,7 +56,7 @@ export default function DnaJourneyScene() {
       <pointLight position={[4, 2, -2]} intensity={40} color={p.l2} />
       <Traveller colorRung={p.rung} />
       <EffectComposer>
-        <Bloom intensity={0.9} luminanceThreshold={0.15} luminanceSmoothing={0.9} mipmapBlur radius={0.7} />
+        <Bloom intensity={0.65} luminanceThreshold={0.3} luminanceSmoothing={0.9} mipmapBlur radius={0.7} />
       </EffectComposer>
     </Canvas>
   );
