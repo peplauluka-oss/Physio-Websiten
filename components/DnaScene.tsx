@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Sparkles } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
-import DnaModel from "./DnaModel";
+import SpineModel from "./SpineModel";
 import { useThemeMode, type ThemeMode } from "./useThemeMode";
 
 type Pal = {
@@ -76,7 +76,7 @@ function Helix({ p }: { p: Pal }) {
   });
   return (
     <group ref={group} rotation={[0, 0, 0.16]}>
-      <DnaModel steps={30} radius={1.9} gap={0.42} angleStep={0.42} tube={0.08} colorA={p.a} colorB={p.b} colorRung={p.rung} emissive={p.emissive} />
+      <SpineModel segments={22} pitch={0.52} curveAmp={0.5} color="#fffdf8" disc="#ffd8e6" glow={p.key} emissive={p.dark ? 0.9 : 0.82} ribs />
       <Sparkles count={50} scale={[7, 9, 7]} size={3} speed={0.3} color={p.spark} opacity={0.7} />
       {p.feminine && p.petals && <PetalField colors={p.petals} />}
     </group>
@@ -102,11 +102,15 @@ export default function DnaScene() {
       <pointLight position={[-5, -2, 3]} intensity={p.dark ? 60 : 40} color={p.l1} />
       <pointLight position={[5, 3, -4]} intensity={p.dark ? 45 : 30} color={p.l2} />
       <Helix p={p} />
-      {p.dark && (
-        <EffectComposer>
-          <Bloom intensity={0.85} luminanceThreshold={0.15} luminanceSmoothing={0.9} mipmapBlur radius={0.7} />
-        </EffectComposer>
-      )}
+      <EffectComposer>
+        <Bloom
+          intensity={p.dark ? 0.85 : 0.42}
+          luminanceThreshold={p.dark ? 0.15 : 0.62}
+          luminanceSmoothing={0.9}
+          mipmapBlur
+          radius={0.7}
+        />
+      </EffectComposer>
     </Canvas>
   );
 }

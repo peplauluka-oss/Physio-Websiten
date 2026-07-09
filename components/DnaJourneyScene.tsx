@@ -4,12 +4,12 @@ import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
-import DnaModel from "./DnaModel";
+import SpineModel from "./SpineModel";
 import { useThemeMode } from "./useThemeMode";
 
-const STEPS = 116;
-const GAP = 0.5;
-const TOP = (STEPS / 2) * GAP;
+const SEG = 40;
+const PITCH = 0.62;
+const TOP = (SEG * PITCH) / 2;
 
 const PALETTES: Record<string, { a: string; b: string; rung: string; l1: string; l2: string; bg: string }> = {
   warm: { a: "#e6a48f", b: "#e0c07f", rung: "#f4e6d2", l1: "#e6947f", l2: "#d9b783", bg: "#0b0908" },
@@ -18,7 +18,7 @@ const PALETTES: Record<string, { a: string; b: string; rung: string; l1: string;
   cozy: { a: "#d98c74", b: "#c99a63", rung: "#f3ded0", l1: "#d98c74", l2: "#c99a63", bg: "#130d08" },
 };
 
-function Traveller({ colorA, colorB, colorRung }: { colorA: string; colorB: string; colorRung: string }) {
+function Traveller({ colorRung }: { colorRung: string }) {
   const group = useRef<THREE.Group>(null);
   const scroll = useRef(0);
 
@@ -37,7 +37,7 @@ function Traveller({ colorA, colorB, colorRung }: { colorA: string; colorB: stri
 
   return (
     <group ref={group}>
-      <DnaModel steps={STEPS} radius={2.0} gap={GAP} angleStep={0.34} tube={0.085} colorA={colorA} colorB={colorB} colorRung={colorRung} emissive={0.6} />
+      <SpineModel segments={SEG} pitch={PITCH} curveAmp={0.6} glow={colorRung} emissive={0.75} ribs />
     </group>
   );
 }
@@ -54,7 +54,7 @@ export default function DnaJourneyScene() {
       <directionalLight position={[4, 6, 6]} intensity={0.8} color="#ffe9d0" />
       <pointLight position={[-4, 0, 4]} intensity={55} color={p.l1} />
       <pointLight position={[4, 2, -2]} intensity={40} color={p.l2} />
-      <Traveller colorA={p.a} colorB={p.b} colorRung={p.rung} />
+      <Traveller colorRung={p.rung} />
       <EffectComposer>
         <Bloom intensity={0.9} luminanceThreshold={0.15} luminanceSmoothing={0.9} mipmapBlur radius={0.7} />
       </EffectComposer>

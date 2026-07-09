@@ -4,7 +4,7 @@ import { useLayoutEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
-import DnaModel from "./DnaModel";
+import SpineModel from "./SpineModel";
 import { useThemeMode } from "./useThemeMode";
 
 const DNA_COLORS: Record<string, { a: string; b: string; rung: string }> = {
@@ -22,8 +22,8 @@ function DnaBackdrop({ colors, dark }: { colors: { a: string; b: string; rung: s
     if (g.current) g.current.rotation.y += d * 0.05;
   });
   return (
-    <group ref={g} rotation={[0, 0, 0.28]} position={[1.6, 0, 0]} scale={1.05}>
-      <DnaModel steps={64} radius={1.8} gap={0.5} angleStep={0.34} tube={0.07} colorA={colors.a} colorB={colors.b} colorRung={colors.rung} emissive={dark ? 0.5 : 0.28} />
+    <group ref={g} rotation={[0, 0, 0.22]} position={[1.9, 0, 0]} scale={0.95}>
+      <SpineModel segments={26} pitch={0.5} curveAmp={0.5} glow={colors.rung} emissive={dark ? 0.5 : 0.32} ribs={false} />
     </group>
   );
 }
