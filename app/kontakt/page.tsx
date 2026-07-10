@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BookingForm from "@/components/BookingForm";
+import ConsentMap from "@/components/ConsentMap";
 import Icon from "@/components/Icon";
 import SceneBackground from "@/components/SceneBackground";
 import { site } from "@/lib/site";
@@ -11,10 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
-    site.mapQuery
-  )}&output=embed`;
-
   return (
     <div className="subpage">
       <SceneBackground />
@@ -99,15 +96,7 @@ export default function ContactPage() {
 
       <section className="section section--blush" style={{ paddingTop: 0 }}>
         <div className="container">
-          <div className="map-wrap">
-            <iframe
-              title="Anfahrt zur Praxis Simone Rammelt"
-              src={mapSrc}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-          </div>
+          <ConsentMap />
         </div>
       </section>
     </div>

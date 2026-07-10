@@ -63,7 +63,8 @@ export default function Footer() {
         <div className="footer__bottom">
           © {new Date().getFullYear()} {site.name} · Behandlung nach ärztlicher
           Verordnung · barrierefreier Zugang ·{" "}
-          <Link href="/kontakt">Impressum</Link>
+          <Link href="/impressum">Impressum</Link> ·{" "}
+          <Link href="/datenschutz">Datenschutz</Link>
         </div>
 
         <div className="footer__logo">
