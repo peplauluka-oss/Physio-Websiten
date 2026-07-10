@@ -27,12 +27,8 @@ export default function Home() {
     <div className="home">
       <SectionProgress labels={panelLabels} />
 
-      {/* 1 — HERO: scroll-gesteuertes Farbrollen→Vorhang→Raum-Intro */}
+      {/* 1 — HERO: Farbfleck→Vorhang→Raum-Intro (Bild-Ebenen, scroll-gestartet) */}
       <PaintRollerHero>
-        <span className="eyebrow rhero__eyebrow">Meisterbetrieb · Berlin · seit über {site.experienceYears} Jahren</span>
-        <h1 className="panel__title rhero__title">
-          Aus kahlen Wänden<br />wird <em>Ihr Zuhause</em>.
-        </h1>
         <p className="panel__lead rhero__lead">
           Malermeister Heußer bringt Fassaden, Altbauten und Wohnräume in ganz Berlin
           zum Strahlen – sauber, termintreu und zum Festpreis.

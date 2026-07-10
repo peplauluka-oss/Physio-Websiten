@@ -891,174 +891,116 @@ html:has(.home) footer.footer { display: none; }
 
 
 /* ============================================================
-   HERO v5 – ABSCHNITTS-CHOREOGRAFIE (Referenzvideo)
-   Runterwischen STARTET den nächsten Abschnitt, der dann von
-   selbst flüssig zu Ende läuft (CSS-Transitions, rückspulbar):
-     [data-p1]  Rolle streicht eine rollenbreite Bahn (Mitte)
-     [data-p2]  Bahn weitet sich, Falten morphen ein, Stange
-     [data-p3]  Vorhänge öffnen sich → Raum → Hero-Text
+   HERO v6 – FOTOREALE BILD-EBENEN (1:1 nach Referenzvideo)
+   Runterwischen startet den nächsten Abschnitt; alle Übergänge
+   sind reine transform/opacity-Transitions (GPU, butterweich):
+     [data-p1]  Farbfleck wächst nach unten, Headline auf dem Fleck
+     [data-p2]  weiche Überblendung zu Stoff-Vorhängen
+     [data-p3]  Vorhänge gleiten auf → Raum → Caption → CTA-Zeile
    ============================================================ */
 .heroscroll { position: relative; height: 260vh; }
 .herostage {
   position: sticky; top: 0; height: 100vh; height: 100svh;
   overflow: hidden; display: flex; align-items: flex-end;
-  --bandW: min(34vw, 430px);
-  --paintEase: cubic-bezier(0.6, 0.04, 0.32, 1);
-  --openEase: cubic-bezier(0.66, 0, 0.22, 1);
+  --openEase: cubic-bezier(0.7, 0.02, 0.22, 1);
+  --paintEase: cubic-bezier(0.58, 0.04, 0.3, 1);
 }
-@media (max-width: 720px) { .herostage { --bandW: 56vw; } }
-.rhero { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
-/* Licht-Schleier oben – Header bleibt in allen Phasen lesbar */
+.rhero { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #f4efe6; }
+/* Licht-Schleier oben – Header bleibt lesbar */
 .rhero::after {
-  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 16%; z-index: 9; pointer-events: none;
-  background: linear-gradient(180deg, rgba(255,251,244,0.55), rgba(255,251,244,0));
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 15%; z-index: 9; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,251,244,0.5), rgba(255,251,244,0));
 }
+.lay { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
-/* ---------- Raum (illustriert), ganz hinten ---------- */
-.rhero__room {
-  position: absolute; inset: 0; z-index: 0;
-  transform: scale(1.1); transform-origin: 70% 42%;
-  transition: transform 2.6s cubic-bezier(0.2, 0.6, 0.2, 1);
+/* ---------- Raum (Foto-Ebene, hinten) ---------- */
+.lay-room {
+  z-index: 0; transform: scale(1.08); transform-origin: 62% 42%;
+  transition: transform 3s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
-.herostage[data-p3] .rhero__room { transform: scale(1); }
-.room__wall { position: absolute; inset: 0; background: linear-gradient(180deg, #efd9b8 0%, #e7c79c 55%, #dcb684 72%, #dcb684 100%); }
-.room__light { position: absolute; inset: 0; background: radial-gradient(58% 72% at 78% 22%, rgba(255,246,220,0.95), rgba(255,246,220,0) 62%); }
-.room__sun {
-  position: absolute; right: 6%; top: 4%; width: 72%; height: 92%; pointer-events: none; opacity: 0;
-  background: linear-gradient(212deg, rgba(255,246,214,0.7) 0%, rgba(255,246,214,0) 46%);
-  mix-blend-mode: screen; transition: opacity 1.8s ease 0.5s;
-}
-.herostage[data-p3] .room__sun { opacity: 0.72; }
-.room__floor { position: absolute; left: 0; right: 0; bottom: 0; height: 24%; background: linear-gradient(180deg, #c69a67, #a97c4e); box-shadow: inset 0 10px 26px rgba(0,0,0,0.14); }
-.room__rug { position: absolute; left: 50%; bottom: 12%; width: 64%; height: 52%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(ellipse at 50% 42%, #d07d49, #a85a2e); opacity: 0.82; }
-.room__base { position: absolute; left: 0; right: 0; bottom: 24%; height: 2.2%; background: linear-gradient(180deg, #cda877, #b58a58); }
-.room__lamp { position: absolute; left: 6%; bottom: 24%; width: 10%; height: 44%; }
-.room__lamp .lamp__glow { position: absolute; top: -8%; left: 50%; width: 340%; height: 62%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, rgba(255,236,190,0.9), rgba(255,236,190,0) 65%); }
-.room__lamp .lamp__shade { position: absolute; top: 0; left: 50%; width: 82%; height: 22%; transform: translateX(-50%); background: linear-gradient(180deg, #eccd90, #cf9f5f); border-radius: 10px 10px 3px 3px; }
-.room__lamp .lamp__stand { position: absolute; top: 20%; bottom: 0; left: 50%; width: 5%; transform: translateX(-50%); background: #6f4a2a; }
-.room__window { position: absolute; right: 9%; top: 12%; width: 26%; height: 52%; border-radius: 6px; background: linear-gradient(180deg, #fff7e4, #ffe9c0); box-shadow: 0 0 60px 14px rgba(255,240,200,0.75), inset 0 0 0 10px #cf9f6e, inset 0 0 0 13px #b98652; }
-.room__mullion { position: absolute; background: #b98652; }
-.room__mullion--v { top: 10px; bottom: 10px; left: 50%; width: 6px; transform: translateX(-50%); }
-.room__mullion--h { left: 10px; right: 10px; top: 50%; height: 6px; transform: translateY(-50%); }
-.room__frame { position: absolute; left: 13%; top: 20%; width: 12%; height: 20%; border-radius: 3px; background: linear-gradient(135deg, #b98a5e, #8a6440); box-shadow: 0 10px 24px rgba(0,0,0,0.18), inset 0 0 0 6px #f3e6d0; }
-.room__chair { position: absolute; left: 15%; bottom: 22%; width: 24%; height: 27%; background: linear-gradient(160deg, #c96a3c, #a94f27); border-radius: 26px 26px 14px 14px; box-shadow: 0 22px 44px rgba(0,0,0,0.24); }
-.room__chair .chair__arm { position: absolute; bottom: 0; width: 20%; height: 62%; background: linear-gradient(160deg, #c1633a, #9c4a24); border-radius: 16px 16px 12px 12px; }
-.room__chair .chair__arm--l { left: -10%; } .room__chair .chair__arm--r { right: -10%; }
-.room__chair .chair__cushion { position: absolute; left: 12%; right: 12%; top: 34%; height: 30%; background: linear-gradient(180deg, #d9814f, #bd6134); border-radius: 12px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.18); }
-.room__plant { position: absolute; right: 21%; bottom: 22%; width: 12%; height: 30%; }
-.room__plant .pot { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 46%; height: 34%; background: linear-gradient(180deg, #b06a3e, #7d4526); border-radius: 6px 6px 10px 10px; }
-.room__plant .leaf { position: absolute; bottom: 30%; left: 50%; width: 20%; height: 60%; background: #6f7f52; border-radius: 60% 40% 60% 40%; transform-origin: bottom center; }
-.room__plant .leaf--1 { transform: translateX(-50%) rotate(-24deg); }
-.room__plant .leaf--2 { transform: translateX(-50%) rotate(2deg); background: #7d8d5c; }
-.room__plant .leaf--3 { transform: translateX(-50%) rotate(26deg); background: #64744a; }
+.herostage[data-p3] .lay-room { transform: scale(1); }
 
-/* ---------- kahle Wand (über dem Raum, um die Bahn herum) ---------- */
-.rhero__wall {
-  position: absolute; inset: 0; z-index: 2; opacity: 1;
-  background: repeating-linear-gradient(90deg, rgba(45,34,22,0.022) 0 3px, transparent 3px 34px), radial-gradient(130% 90% at 50% 8%, #fffdf8, #ece3d4 88%);
-  transition: opacity 0.4s ease;
-}
-/* Wand blendet aus, sobald die Bahn den Bildschirm füllt (Ende Phase 2) */
-.herostage[data-p2] .rhero__wall { opacity: 0; transition: opacity 0.5s ease 1s; }
-
-/* ---------- Farbbahn / Vorhang ---------- */
-.band {
-  position: absolute; top: 0; bottom: 0; left: 50%; z-index: 3;
-  width: var(--bandW); transform: translateX(-50%);
-  transition: width 1.4s cubic-bezier(0.55, 0.05, 0.35, 1);
-}
-.herostage[data-p2] .band { width: 102vw; }
-/* Reveal beim Streichen: Clip faehrt mit der Rolle nach unten */
-.bandclip {
-  position: absolute; inset: 0;
-  clip-path: inset(13% 0 87.4% 0);
-  transition: clip-path 1.65s var(--paintEase) 0.15s;
-}
-.herostage[data-p1] .bandclip { clip-path: inset(13% 0 -2% 0); }
-.herostage[data-p2] .bandclip { clip-path: inset(-2% 0 -2% 0); transition: clip-path 0.9s ease; }
-.paintlayer {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  transition: opacity 0.8s ease;
-}
-/* Farbschicht weicht dem fertig eingeblendeten Vorhang */
-.herostage[data-p2] .paintlayer { opacity: 0; transition: opacity 0.7s ease 1.15s; }
-/* Vorhang-Haelften: morphen in Phase 2 ein, oeffnen in Phase 3 */
+/* ---------- Vorhänge (Foto-Ebenen) ---------- */
 .curt {
-  position: absolute; top: 0; bottom: 0; width: 50%; height: 100%;
-  opacity: 0;
-  transition: opacity 0.5s ease, transform 1.9s var(--openEase) 0.1s;
+  z-index: 2; width: 51.5%; opacity: 0; will-change: transform, opacity;
+  transform: scale(1.06);
+  transition: opacity 0.6s ease, transform 2.1s var(--openEase);
 }
-.curt--l { left: 0; } .curt--r { right: 0; }
-.herostage[data-p2] .curt { opacity: 1; transition: opacity 1.25s ease 0.3s, transform 1.9s var(--openEase) 0.1s; }
-/* oeffnen – ein schmaler Rest bleibt als Rahmen an den Raendern stehen */
-.herostage[data-p3] .curt--l { transform: translateX(-94%); }
-.herostage[data-p3] .curt--r { transform: translateX(94%); }
-
-/* nasse Front + Tropfen – nur an der Bahn, faehrt mit der Rolle */
-.bandedge {
-  position: absolute; left: -2%; right: -2%; height: 60px; z-index: 4;
-  top: 13%; transform: translateY(-30%); opacity: 0;
-  transition: top 1.65s var(--paintEase) 0.15s, opacity 0.3s ease;
+/* linkes Panel liegt oben und laeuft weich in das rechte aus – nahtloser Stoff */
+.curt--l { left: 0; right: auto; z-index: 3; -webkit-mask-image: linear-gradient(90deg, #000 84%, transparent 100%); mask-image: linear-gradient(90deg, #000 84%, transparent 100%); }
+.curt--r { left: auto; right: 0; z-index: 2; width: 58%; }
+.herostage[data-p2] .curt {
+  opacity: 1; transform: scale(1);
+  transition: opacity 1.1s ease 0.15s, transform 1.4s ease 0.1s;
 }
-.bandedge svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 4px 10px rgba(157,66,28,0.35)); }
-.herostage[data-p1] .bandedge { top: 102%; opacity: 1; }
-.herostage[data-p2] .bandedge { opacity: 0; transition: opacity 0.35s ease; }
+.herostage[data-p3] .curt--l { transform: translateX(-96%) scale(1); transition: opacity 0.4s ease, transform 2.1s var(--openEase) 0.05s; }
+.herostage[data-p3] .curt--r { transform: translateX(96%) scale(1); transition: opacity 0.4s ease, transform 2.1s var(--openEase) 0.05s; }
 
-/* ---------- Vorhangstange ---------- */
-.curtainrod {
-  position: absolute; top: 0; left: 0; right: 0; height: 13px; z-index: 5;
-  background: linear-gradient(180deg, #6b4a2b, #4a3113);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-  opacity: 0; transform: translateY(-16px);
-  transition: opacity 0.7s ease 0.9s, transform 0.7s ease 0.9s;
+/* ---------- kahle Wand ---------- */
+.rhero__wall {
+  position: absolute; inset: 0; z-index: 1; opacity: 1;
+  background:
+    radial-gradient(120% 80% at 70% 10%, rgba(255,252,246,0.9), rgba(255,252,246,0) 60%),
+    repeating-linear-gradient(90deg, rgba(45,34,22,0.016) 0 3px, transparent 3px 34px),
+    linear-gradient(180deg, #faf6ee 0%, #eee5d5 100%);
+  transition: opacity 0.5s ease;
 }
-.herostage[data-p2] .curtainrod { opacity: 1; transform: translateY(0); }
-.herostage:not([data-p2]) .curtainrod { transition-delay: 0s; }
+.herostage[data-p2] .rhero__wall { opacity: 0; transition: opacity 0.9s ease 0.5s; }
 
-/* ---------- die Farbrolle (Walze = Bahnbreite) ---------- */
-.rroller {
-  position: absolute; z-index: 6; top: 15%; left: 50%;
-  width: calc(var(--bandW) * 1.5);
-  transform: translate(-41.67%, -23.5%);
-  filter: drop-shadow(0 12px 18px rgba(60,40,20,0.35));
-  transition: top 1.65s var(--paintEase) 0.15s, opacity 0.4s ease;
+/* ---------- Farbfleck mit Headline ---------- */
+.patchwrap {
+  position: absolute; z-index: 3; top: 9svh; left: 50%; height: 82svh;
+  aspect-ratio: 2 / 3; transform: translateX(-50%);
+  clip-path: inset(-2% -6% 102% -6%);
+  transition: clip-path 2.1s var(--paintEase) 0.1s, opacity 0.7s ease, transform 0.7s ease;
+  will-change: clip-path, opacity;
 }
-.rroller svg { width: 100%; height: auto; display: block; }
-.herostage[data-p1] .rroller { top: 103%; }
-.herostage[data-p2] .rroller { opacity: 0; }
-/* leichtes Wackeln, solange gestrichen wird */
-.herostage[data-p1]:not([data-p2]) .rroller svg { animation: rwob 0.55s ease-in-out infinite alternate; }
-@keyframes rwob { from { transform: rotate(-1deg); } to { transform: rotate(1deg); } }
+.herostage[data-p1] .patchwrap { clip-path: inset(-2% -6% -3% -6%); }
+.herostage[data-p2] .patchwrap { opacity: 0; transform: translateX(-50%) scale(1.05); transition: opacity 0.8s ease 0.3s, transform 1.2s ease; }
+.patch { width: 100%; height: 100%; object-fit: fill; display: block; filter: drop-shadow(0 18px 40px rgba(150,64,20,0.18)); }
+.patch__text {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end; text-align: center;
+  padding: 0 8% 14%;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.herostage[data-p1] .patch__text { opacity: 1; transform: translateY(0); transition: opacity 0.9s ease 1.6s, transform 0.9s ease 1.6s; }
+.patch__eyebrow {
+  font-family: var(--display); font-size: clamp(0.6rem, 1vw, 0.78rem); font-weight: 600;
+  letter-spacing: 0.26em; text-transform: uppercase; color: rgba(255,240,226,0.92);
+  margin-bottom: 0.9rem;
+}
+.patch__title {
+  font-family: var(--serif); font-weight: 500; color: #fff7ef;
+  font-size: clamp(1.5rem, 3.4vw, 3rem); line-height: 1.12; margin: 0;
+  text-shadow: 0 2px 22px rgba(90,30,0,0.35);
+}
 
-/* ---------- Zwischen-Caption ---------- */
+/* ---------- Caption ---------- */
 .rhero__caption {
-  position: absolute; z-index: 6; left: 0; right: 0; top: 42%; text-align: center;
-  font-family: var(--serif); font-style: italic; font-size: clamp(1.5rem, 3.6vw, 2.7rem); color: #fff;
-  text-shadow: 0 3px 24px rgba(0,0,0,0.5); opacity: 0;
+  position: absolute; z-index: 6; left: 0; right: 0; top: 40%; text-align: center;
+  font-family: var(--serif); font-style: italic; font-size: clamp(1.5rem, 3.6vw, 2.8rem); color: #fff;
+  text-shadow: 0 3px 26px rgba(70,30,5,0.55); opacity: 0;
 }
-.herostage[data-p3] .rhero__caption { animation: rCap 2.8s ease 0.25s forwards; }
-@keyframes rCap { 0% { opacity: 0; transform: translateY(10px); } 20% { opacity: 1; transform: none; } 72% { opacity: 1; } 100% { opacity: 0; } }
+.herostage[data-p3] .rhero__caption { animation: rCap 3s ease 0.5s forwards; }
+@keyframes rCap { 0% { opacity: 0; transform: translateY(10px); } 18% { opacity: 1; transform: none; } 70% { opacity: 1; } 100% { opacity: 0; } }
 
-/* ---------- Hero-Text ---------- */
-/* Bühnen-weiter Lesbarkeits-Verlauf unten – blendet mit dem Text ein */
+/* ---------- CTA-Zeile ---------- */
 .herostage::before {
   content: ""; position: absolute; inset: 0; z-index: 6; pointer-events: none;
-  background: linear-gradient(180deg, transparent 32%, rgba(24,14,6,0.5) 72%, rgba(24,14,6,0.74) 100%);
-  opacity: 0; transition: opacity 0.9s ease 1.4s;
+  background: linear-gradient(180deg, transparent 40%, rgba(50,24,8,0.42) 76%, rgba(50,24,8,0.62) 100%);
+  opacity: 0; transition: opacity 1s ease 1.7s;
 }
 .herostage[data-p3]::before { opacity: 1; }
 .rhero__content {
   position: relative; z-index: 7; align-self: flex-end; width: 100%;
-  max-width: var(--max); margin: 0 auto; padding-bottom: clamp(3.5rem, 8vh, 6rem); padding-top: 6rem;
+  max-width: var(--max); margin: 0 auto; padding: 0 clamp(1.1rem, 4vw, 2.2rem) clamp(3rem, 7vh, 5rem);
   opacity: 0; transform: translateY(26px);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
-.herostage[data-p3] .rhero__content { opacity: 1; transform: translateY(0); transition: opacity 0.9s var(--ease) 1.5s, transform 0.9s var(--ease) 1.5s; }
-.rhero__title { font-size: clamp(2.8rem, 8vw, 6rem); color: #fff; margin-bottom: 1.2rem; text-shadow: 0 4px 30px rgba(0,0,0,0.45); }
-.rhero__title em { font-style: italic; color: #ffd9b0; }
-.rhero__eyebrow { color: #ffe3c4; }
-.rhero__eyebrow::before { background: linear-gradient(90deg, #ffe3c4, transparent); }
-.rhero__lead { color: rgba(255,255,255,0.95); text-shadow: 0 2px 16px rgba(0,0,0,0.5); max-width: 44ch; }
+.herostage[data-p3] .rhero__content { opacity: 1; transform: translateY(0); transition: opacity 1s var(--ease) 1.9s, transform 1s var(--ease) 1.9s; }
+.rhero__lead { color: #fff; text-shadow: 0 2px 16px rgba(60,28,8,0.55); max-width: 46ch; font-size: clamp(1.05rem, 1.8vw, 1.35rem); }
 .rhero__trust .trustrow__item { color: #fff; }
 .rhero__trust .trustrow__item .num { color: #ffd9b0; }
 .rhero__trust .trustrow__sep { background: rgba(255,255,255,0.4); }
@@ -1068,20 +1010,11 @@ html:has(.home) footer.footer { display: none; }
 .herostage .btn--ghost { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.55); color: #fff; }
 .herostage .btn--ghost:hover { background: rgba(255,255,255,0.24); border-color: #fff; color: #fff; }
 
+@media (max-width: 720px) {
+  .patchwrap { height: 66svh; top: 12svh; }
+  .rhero__caption { top: 36%; }
+}
 @media (prefers-reduced-motion: reduce) {
   .heroscroll { height: 100svh; }
-  .rroller, .bandedge, .rhero__caption { display: none !important; }
-}
-
-/* ---------- Raum-Detailschicht: Kontaktschatten & Bild ---------- */
-.room__chair::after, .room__plant::after, .room__lamp::after {
-  content: ""; position: absolute; left: 50%; bottom: -3.5%; width: 116%; height: 9%;
-  transform: translateX(-50%); border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(60,30,10,0.28), rgba(60,30,10,0) 70%);
-}
-.room__frame::after {
-  content: ""; position: absolute; inset: 9px;
-  background:
-    linear-gradient(180deg, #e8c9a0 0%, #d9a875 46%, #b97848 47%, #9c5c34 100%);
-  border-radius: 2px;
+  .patchwrap, .rhero__wall, .rhero__caption { display: none !important; }
 }
