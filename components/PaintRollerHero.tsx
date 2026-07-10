@@ -3,44 +3,46 @@
 import { useEffect, useRef, type ReactNode } from "react";
 
 /**
- * Scroll-gesteuertes Intro (wie Referenzvideo – läuft NUR beim Runterwischen):
- *   Fortschritt 0→1 über eine hohe Sektion, die Bühne bleibt sticky/vollbild.
- *     0.05–0.42  Farbrolle streicht Terrakotta von oben nach unten auf
- *     0.40–0.52  Fläche wird zu Vorhängen
- *     0.50–0.85  Vorhänge öffnen sich → warmer Raum (mit Push-in)
- *     0.84–1.00  Hero-Text erscheint
- * Kein Autoplay. Respektiert prefers-reduced-motion (zeigt sofort den Raum).
+ * Intro nach Referenzvideo, in 3 scroll-GESTARTETEN Abschnitten:
+ *   Phase 1  Die kleine Farbrolle streicht eine rollenbreite BAHN
+ *            in der Bildschirmmitte von oben nach unten (Wand bleibt
+ *            drumherum sichtbar – wie im Video).
+ *   Phase 2  Weiches Morphen: die Bahn weitet sich zur vollen Breite,
+ *            Stofffalten wachsen sanft ein, oben blendet die
+ *            Vorhangstange ein.
+ *   Phase 3  Die Vorhänge gleiten zur Seite und geben den warmen,
+ *            illustrierten Raum frei; danach erscheint der Hero-Text.
+ *
+ * Steuerung: Runterwischen überschreitet eine Schwelle und STARTET den
+ * jeweils nächsten Abschnitt – der läuft dann von selbst flüssig zu Ende
+ * (CSS-Transitions mit fester Dauer, dadurch auch sauber rückwärts).
+ * prefers-reduced-motion zeigt sofort den fertigen Zustand.
  */
-const clamp01 = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x);
-const map = (p: number, a: number, b: number) => clamp01((p - a) / (b - a));
-const smooth = (t: number) => t * t * (3 - 2 * t);
+
+const THRESHOLDS = [0.1, 0.42, 0.72];
+const HYST = 0.05;
 
 export default function PaintRollerHero({ children }: { children: ReactNode }) {
   const secRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
+  const phaseRef = useRef(0);
 
   useEffect(() => {
     const sec = secRef.current;
     const stage = stageRef.current;
     if (!sec || !stage) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const setVars = (v: Record<string, string>) => {
-      for (const k in v) stage.style.setProperty(k, v[k]);
+    const setPhase = (ph: number) => {
+      if (ph === phaseRef.current) return;
+      phaseRef.current = ph;
+      ph >= 1 ? stage.setAttribute("data-p1", "") : stage.removeAttribute("data-p1");
+      ph >= 2 ? stage.setAttribute("data-p2", "") : stage.removeAttribute("data-p2");
+      ph >= 3 ? stage.setAttribute("data-p3", "") : stage.removeAttribute("data-p3");
     };
 
-    const finalState = () => {
-      setVars({
-        "--paintCut": "0%", "--rollerTop": "108%", "--rollerOpacity": "0", "--edgeOpacity": "0",
-        "--curtainOpacity": "1", "--wallOpacity": "0", "--roomOpacity": "1", "--roomScale": "1",
-        "--openL": "-104%", "--openR": "104%", "--capOpacity": "0", "--textOpacity": "1", "--textY": "0px",
-      });
-    };
-
-    if (reduce) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       sec.style.height = "100svh";
-      finalState();
+      setPhase(3);
       return;
     }
 
@@ -48,36 +50,13 @@ export default function PaintRollerHero({ children }: { children: ReactNode }) {
     const update = () => {
       raf = 0;
       const vh = window.innerHeight;
-      const rect = sec.getBoundingClientRect();
-      const total = sec.offsetHeight - vh; // Scroll-Strecke, in der die Bühne gepinnt ist
-      const p = total > 0 ? clamp01(-rect.top / total) : 0;
-
-      const paint = smooth(map(p, 0.05, 0.42));
-      const curtainOpacity = map(p, 0.4, 0.52);
-      const wallOpacity = 1 - map(p, 0.42, 0.52);
-      const roomOpacity = map(p, 0.5, 0.6);
-      const open = smooth(map(p, 0.52, 0.85));
-      const roller = 1 - map(p, 0.42, 0.48);
-      const cap = Math.min(map(p, 0.56, 0.64), 1 - map(p, 0.74, 0.82));
-      const text = map(p, 0.85, 1);
-
-      setVars({
-        "--paintCut": (100 - paint * 100).toFixed(2) + "%",
-        "--rollerTop": (paint * 108).toFixed(2) + "%",
-        "--rollerOpacity": roller.toFixed(3),
-        "--edgeOpacity": roller.toFixed(3),
-        "--curtainOpacity": curtainOpacity.toFixed(3),
-        "--wallOpacity": wallOpacity.toFixed(3),
-        "--roomOpacity": roomOpacity.toFixed(3),
-        "--roomScale": (1.12 - 0.12 * open).toFixed(3),
-        "--openL": (-104 * open).toFixed(2) + "%",
-        "--openR": (104 * open).toFixed(2) + "%",
-        "--capOpacity": clamp01(cap).toFixed(3),
-        "--textOpacity": text.toFixed(3),
-        "--textY": (24 - 24 * text).toFixed(1) + "px",
-      });
+      const total = sec.offsetHeight - vh;
+      const p = total > 0 ? Math.min(1, Math.max(0, -sec.getBoundingClientRect().top / total)) : 1;
+      let ph = phaseRef.current;
+      while (ph < 3 && p >= THRESHOLDS[ph]) ph++;
+      while (ph > 0 && p < THRESHOLDS[ph - 1] - HYST) ph--;
+      setPhase(ph);
     };
-
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -93,7 +72,7 @@ export default function PaintRollerHero({ children }: { children: ReactNode }) {
     <section className="heroscroll" id="start" ref={secRef}>
       <div className="herostage" data-panel ref={stageRef}>
         <div className="rhero" aria-hidden>
-          {/* warmer Raum hinter den Vorhängen */}
+          {/* warmer, illustrierter Raum hinter allem */}
           <div className="rhero__room">
             <span className="room__wall" />
             <span className="room__light" />
@@ -115,38 +94,48 @@ export default function PaintRollerHero({ children }: { children: ReactNode }) {
             <span className="room__floor"><span className="room__rug" /></span>
           </div>
 
-          {/* Vorhänge */}
-          <div className="rhero__curtains">
-            <span className="curtain__rod" />
-            <span className="curtain curtain--l" />
-            <span className="curtain curtain--r" />
+          {/* kahle Wand – bleibt um die Farbbahn herum sichtbar */}
+          <div className="rhero__wall" />
+
+          {/* Farbbahn (Phase 1) → Vorhang (Phase 2) → öffnet sich (Phase 3) */}
+          <div className="band">
+            <div className="bandclip">
+              <span className="half half--l" />
+              <span className="half half--r" />
+            </div>
+            <div className="bandedge">
+              <span className="drip drip--1" />
+              <span className="drip drip--2" />
+              <span className="drip drip--3" />
+            </div>
           </div>
 
-          {/* kahle Wand + aufgerollte Farbe */}
-          <div className="rhero__wall"><span className="rhero__paint" /></div>
+          {/* Vorhangstange (blendet am Ende von Phase 2 ein) */}
+          <div className="curtainrod" />
 
-          {/* nasse Farbkante + Tropfen */}
-          <div className="rhero__edge">
-            <span className="rhero__drip rhero__drip--1" />
-            <span className="rhero__drip rhero__drip--2" />
-            <span className="rhero__drip rhero__drip--3" />
-            <span className="rhero__drip rhero__drip--4" />
-          </div>
-
-          {/* die (kleine, mittige) Rolle */}
-          <div className="rhero__roller">
-            <svg viewBox="0 0 200 150" width="200" height="150" role="img" aria-label="Farbrolle">
-              <path d="M133 78 L133 118 Q133 128 123 128 L100 128" fill="none" stroke="#3b2c1c" strokeWidth="8" strokeLinecap="round" />
-              <path d="M40 40 L133 40 L133 78" fill="none" stroke="#8a7d6b" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
-              <rect x="12" y="20" width="112" height="34" rx="17" fill="var(--copper)" />
-              <rect x="12" y="20" width="112" height="34" rx="17" fill="url(#rg)" opacity="0.5" />
-              <rect x="12" y="20" width="112" height="10" rx="5" fill="#ffffff" opacity="0.2" />
+          {/* die kleine Farbrolle */}
+          <div className="rroller">
+            <svg viewBox="0 0 230 170" role="img" aria-label="Farbrolle">
               <defs>
-                <linearGradient id="rg" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stopColor="#ffffff" />
-                  <stop offset="1" stopColor="#000000" />
+                <linearGradient id="rsleeve" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stopColor="#e2854f" />
+                  <stop offset="0.45" stopColor="#c65d30" />
+                  <stop offset="1" stopColor="#96401c" />
+                </linearGradient>
+                <linearGradient id="rgrip" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stopColor="#e8a668" />
+                  <stop offset="1" stopColor="#b06c33" />
                 </linearGradient>
               </defs>
+              <rect x="18" y="16" width="150" height="46" rx="23" fill="url(#rsleeve)" />
+              <rect x="26" y="21" width="134" height="11" rx="5.5" fill="#ffffff" opacity="0.22" />
+              <ellipse cx="162" cy="39" rx="7" ry="21" fill="#7c3312" opacity="0.45" />
+              <path d="M166 39 h24 c9 0 13 6 13 13 v36 c0 8 -6 13 -13 13 h-1" fill="none" stroke="#9aa0a6" strokeWidth="7" strokeLinecap="round" />
+              <rect x="180" y="103" width="18" height="9" rx="4" fill="#6d7276" />
+              <rect x="178" y="111" width="22" height="48" rx="10" fill="url(#rgrip)" />
+              <rect x="183" y="121" width="12" height="3" rx="1.5" fill="#8a5426" opacity="0.55" />
+              <rect x="183" y="129" width="12" height="3" rx="1.5" fill="#8a5426" opacity="0.55" />
+              <rect x="183" y="137" width="12" height="3" rx="1.5" fill="#8a5426" opacity="0.55" />
             </svg>
           </div>
 
