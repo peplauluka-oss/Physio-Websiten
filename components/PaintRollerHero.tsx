@@ -17,7 +17,7 @@ import { asset } from "@/lib/asset";
  * Runterwischen STARTET den nächsten Abschnitt, rückwärts spult zurück.
  */
 
-const THRESHOLDS = [0.1, 0.42, 0.72];
+const THRESHOLDS = [0.07, 0.42, 0.72];
 const HYST = 0.05;
 
 export default function PaintRollerHero({ children }: { children: ReactNode }) {
@@ -72,7 +72,7 @@ export default function PaintRollerHero({ children }: { children: ReactNode }) {
         <div className="rhero" aria-hidden>
           {/* Ebene 1: weicher, warmer Raum (hinter allem) */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="lay lay-room" src={asset("/images/hero/room.jpg")} alt="" />
+          <img className="lay lay-room" src={asset("/images/hero/room.jpg")} alt="" loading="eager" decoding="async" />
 
           {/* Ebene 2: Vorhänge */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -80,19 +80,23 @@ export default function PaintRollerHero({ children }: { children: ReactNode }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="lay curt curt--r" src={asset("/images/hero/curtain-r.jpg")} alt="" />
 
-          {/* Ebene 3: kahle Wand */}
-          <div className="rhero__wall" />
+          {/* Ebene 3: kahle Wand (Putz-Textur) */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="lay rhero__wall" src={asset("/images/hero/wall.jpg")} alt="" />
+
+          {/* Licht-Bloom beim Öffnen der Vorhänge */}
+          <span className="lightbloom" />
 
           {/* Ebene 4: fotoreale Farbrolle – reitet auf der wachsenden Farbkante */}
           <div className="rollwrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="rollimg" src={asset("/images/hero/roller.png")} alt="" />
+            <img className="rollimg" src={asset("/images/hero/roller.png")} alt="" loading="eager" decoding="async" fetchPriority="high" />
           </div>
 
           {/* Ebene 5: der wachsende Farbfleck mit Headline */}
           <div className="patchwrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="patch" src={asset("/images/hero/paint-patch.png")} alt="" />
+            <img className="patch" src={asset("/images/hero/paint-patch.png")} alt="" loading="eager" decoding="async" fetchPriority="high" />
             <div className="patch__text">
               <span className="patch__eyebrow">Malermeister Heußer · Berlin</span>
               <h1 className="patch__title">Aus kahlen Wänden<br />wird Ihr Zuhause.</h1>
