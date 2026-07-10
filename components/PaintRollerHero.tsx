@@ -107,7 +107,12 @@ export default function PaintRollerHero({ children }: { children: ReactNode }) {
         </div>
 
         <div className="container rhero__content">{children}</div>
-        <span className="scroll-hint" aria-hidden>Runterwischen <span>↓</span></span>
+        <span className="scroll-hint" aria-hidden>
+          <span className="h0t">Runterwischen &amp; streichen</span>
+          <span className="h1t">Weiter wischen</span>
+          <span className="h2t">Und öffnen</span>
+          {" "}<span>↓</span>
+        </span>
       </div>
     </section>
   );
