@@ -1,10 +1,38 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import { site } from "@/lib/site";
+
+// Lokal gehostete Schriften (DSGVO-konform, keine Anfragen an Google Fonts).
+// Variable Fonts (WOFF2, Latin-Subset) liegen in app/fonts/ und werden von
+// Next.js beim Build mit ausgeliefert.
+const fraunces = localFont({
+  src: [
+    { path: "./fonts/fraunces-latin-var.woff2", weight: "100 900", style: "normal" },
+    { path: "./fonts/fraunces-latin-italic-var.woff2", weight: "100 900", style: "italic" },
+  ],
+  variable: "--font-fraunces",
+  display: "swap",
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
+
+const nunitoSans = localFont({
+  src: [{ path: "./fonts/nunito-sans-latin-var.woff2", weight: "200 1000", style: "normal" }],
+  variable: "--font-nunito-sans",
+  display: "swap",
+  fallback: ["Segoe UI", "system-ui", "sans-serif"],
+});
+
+const caveat = localFont({
+  src: [{ path: "./fonts/caveat-latin-var.woff2", weight: "400 700", style: "normal" }],
+  variable: "--font-caveat",
+  display: "swap",
+  fallback: ["Segoe Script", "cursive"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -36,14 +64,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="de" data-theme="blossom">
+    <html
+      lang="de"
+      data-theme="blossom"
+      className={`${fraunces.variable} ${nunitoSans.variable} ${caveat.variable}`}
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Nunito+Sans:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap"
-          rel="stylesheet"
-        />
         {/* Ohne JavaScript sollen die per Scroll eingeblendeten Inhalte sichtbar sein */}
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>

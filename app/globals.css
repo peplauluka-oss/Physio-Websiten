@@ -40,8 +40,9 @@
   --radius-lg: 40px;
   --max: 1180px;
 
-  --serif: "Fraunces", "Georgia", "Times New Roman", serif;
-  --sans: "Nunito Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  /* Lokal gehostete Fonts (next/font/local, DSGVO-konform) */
+  --serif: var(--font-fraunces), "Georgia", "Times New Roman", serif;
+  --sans: var(--font-nunito-sans), "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
 /* === Theme „Cinematic" – dunkel · lila · blau · cyan (Glow) === */
@@ -1093,7 +1094,7 @@ html[data-theme="cozy"] {
 /* ---- Feminine Extras (Blüte & Cozy) ---- */
 html[data-theme="blossom"] .accent,
 html[data-theme="cozy"] .accent {
-  font-family: "Caveat", "Segoe Script", cursive;
+  font-family: var(--font-caveat), "Segoe Script", cursive;
   font-style: normal;
   font-weight: 700;
   font-size: 1.28em;
